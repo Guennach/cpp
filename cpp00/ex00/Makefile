@@ -6,7 +6,7 @@
 #    By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/15 16:12:36 by gothmane          #+#    #+#              #
-#    Updated: 2023/10/16 13:25:13 by gothmane         ###   ########.fr        #
+#    Updated: 2023/10/19 12:22:13 by gothmane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SRCS = megaphone.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
-CC = g++
+CC = c++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
@@ -36,5 +36,7 @@ clean :
 		
 fclean :
 	rm -f $(NAME)
+	
+re: fclean clean all
 
 .phony : all clean

@@ -5,40 +5,31 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/15 18:19:52 by gothmane          #+#    #+#             */
-/*   Updated: 2023/10/19 10:35:05 by gothmane         ###   ########.fr       */
+/*   Created: 2023/10/19 12:39:17 by gothmane          #+#    #+#             */
+/*   Updated: 2023/10/19 13:33:07 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.hpp"
+#include "Weapon.hpp"
+#include "HumanA.hpp"
+#include "HumanB.hpp"
 
-int	main()
+int main()
 {
-	std::string	cmd;
-	PhoneBook	cn;
-	int			idx;
-	
-	idx = 0;
-	while (1)	
 	{
-		std::cout << "Welcome to the PhoneBOOK!" << std::endl;
-		std::cout << "Give me a CMD between [ADD] | [SEARCH] and [EXIT]" << std::endl;	
-		std::cin >> cmd;
-		if (std::cin.eof() || cmd.empty())
-			return (1);
-		if (!cmd.empty() && cmd == "ADD")
-		{
-			if (idx == 8)
-				idx = 0;
-			cn.AddContact(idx);
-			idx++;
-		}
-		else if (!cmd.empty() && cmd == "SEARCH")
-		{
-			if (cn.getSize() != 0)
-				cn.Search(idx);
-		}
-		else if (cmd == "EXIT")
-			return (0);
+		Weapon club = Weapon("crude spiked club");
+		HumanA bob("Bob", club);
+		bob.attack();
+		club.setType("some other type of club");
+		bob.attack();
 	}
+	{
+		Weapon club = Weapon("crude spiked club");
+		HumanB jim("Jim");
+		jim.setWeapon(club);
+		jim.attack();
+		club.setType("some other type of club");
+		jim.attack();
+	}
+	return 0;
 }

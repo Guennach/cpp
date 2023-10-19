@@ -5,40 +5,19 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/15 18:19:52 by gothmane          #+#    #+#             */
-/*   Updated: 2023/10/19 10:35:05 by gothmane         ###   ########.fr       */
+/*   Created: 2023/10/19 11:04:32 by gothmane          #+#    #+#             */
+/*   Updated: 2023/10/19 12:13:12 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.hpp"
+#include "Zombie.hpp"
 
-int	main()
+int main()
 {
-	std::string	cmd;
-	PhoneBook	cn;
-	int			idx;
+	Zombie s;
 	
-	idx = 0;
-	while (1)	
-	{
-		std::cout << "Welcome to the PhoneBOOK!" << std::endl;
-		std::cout << "Give me a CMD between [ADD] | [SEARCH] and [EXIT]" << std::endl;	
-		std::cin >> cmd;
-		if (std::cin.eof() || cmd.empty())
-			return (1);
-		if (!cmd.empty() && cmd == "ADD")
-		{
-			if (idx == 8)
-				idx = 0;
-			cn.AddContact(idx);
-			idx++;
-		}
-		else if (!cmd.empty() && cmd == "SEARCH")
-		{
-			if (cn.getSize() != 0)
-				cn.Search(idx);
-		}
-		else if (cmd == "EXIT")
-			return (0);
-	}
+	Zombie *a = s.newZombie("telha");
+	a->announce();
+	a->randomChump("ANAA");
+	delete a;
 }

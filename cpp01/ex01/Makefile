@@ -5,15 +5,15 @@
 #                                                     +:+ +:+         +:+      #
 #    By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/10/15 16:12:36 by gothmane          #+#    #+#              #
-#    Updated: 2023/10/19 12:22:57 by gothmane         ###   ########.fr        #
+#    Created: 2023/10/19 11:04:33 by gothmane          #+#    #+#              #
+#    Updated: 2023/10/19 12:21:44 by gothmane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-NAME = phonebook
+NAME = zombie
 
-SRCS = Contact.cpp PhoneBook.cpp main.cpp
+SRCS = Zombie.cpp  main.cpp ZombieHorde.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
@@ -28,7 +28,7 @@ all: $(NAME)
 	$(CC) $(CFLAGS) -o $@ -c $<
 
 
-$(NAME):  $(OBJS) PhoneBook.hpp Contact.hpp
+$(NAME):  $(OBJS) Zombie.hpp
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 	
 clean : 

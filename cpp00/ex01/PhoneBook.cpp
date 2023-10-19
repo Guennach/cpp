@@ -6,7 +6,7 @@
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 16:12:32 by gothmane          #+#    #+#             */
-/*   Updated: 2023/10/16 15:35:27 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/10/19 10:54:20 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,31 +77,31 @@ std::string ft_trunc_nd_return(std::string str)
 
 void PhoneBook::Search(int idx)
 {
-	int index = -1;
-
+	std::string input;
+	int index = 0;
+	
 	(void)idx;
 	std::cout << "Searching..." << std::endl;
-	std::cout << this->size;
 	std::cout << "=============================================" << std::endl;
 	std::cout << "|" << std::left << std::setw(10) << "INDEX" << "|"  << std::setw(10) <<  "firstname |" << std::setw(10) <<  "lastname  |" << std::setw(10) <<  "Nickname  |"  << std::endl;
 	std::cout << "=============================================" << std::endl;
 	for (int i = 0; i < this->size; i++)
 	{
-		std::cout << std::right << "|" << std::setw(10) <<  i << "|";
+		std::cout << std::right << "|" << std::setw(10) << (i + 1) << "|";
 		std::cout << std::setw(10) <<  ft_trunc_nd_return(this->list[i].getFirstName()) << "|";
 		std::cout << std::setw(10) << ft_trunc_nd_return(this->list[i].getLastName()) << "|";
 		std::cout << std::setw(10) << ft_trunc_nd_return(this->list[i].getNickName()) << "|" << std::endl;
 		std::cout << "---------------------------------------------" << std::endl;
 	}
-	// std::cout << "=====================================================================" << std::endl;
-
-	// std::cout << "=====================================================================" << std::endl;
 	std::cout << "\n";
 	std::cout << "Give me an index from 1 to 8 in the contact" << std::endl;
-	std::cin >> index;
-	if (std::cin.eof())
-		exit (1);
-	// std::cin.ignore(); //flush the input stream
+	while (input.empty())
+	{
+		std::getline(std::cin, input);
+		if (std::cin.eof())
+			exit (1);
+	}
+	index = std::atoi(input.c_str());
 	index--;
 	if (index != -1 && index < this->size)
 	{

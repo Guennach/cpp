@@ -5,40 +5,37 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/15 18:19:52 by gothmane          #+#    #+#             */
-/*   Updated: 2023/10/19 10:35:05 by gothmane         ###   ########.fr       */
+/*   Created: 2023/10/19 11:04:32 by gothmane          #+#    #+#             */
+/*   Updated: 2023/10/19 12:13:57 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.hpp"
+#include "Zombie.hpp"
 
-int	main()
+int main_process()
 {
-	std::string	cmd;
-	PhoneBook	cn;
-	int			idx;
+	Zombie	s;
+	int		n = 10;
 	
-	idx = 0;
-	while (1)	
+	Zombie *a = s.zombieHorde(n, "AYAC");
+	
+	if (a)
 	{
-		std::cout << "Welcome to the PhoneBOOK!" << std::endl;
-		std::cout << "Give me a CMD between [ADD] | [SEARCH] and [EXIT]" << std::endl;	
-		std::cin >> cmd;
-		if (std::cin.eof() || cmd.empty())
-			return (1);
-		if (!cmd.empty() && cmd == "ADD")
-		{
-			if (idx == 8)
-				idx = 0;
-			cn.AddContact(idx);
-			idx++;
-		}
-		else if (!cmd.empty() && cmd == "SEARCH")
-		{
-			if (cn.getSize() != 0)
-				cn.Search(idx);
-		}
-		else if (cmd == "EXIT")
-			return (0);
+		for (int i = 0; i < n; i++)
+			a[i].announce();
+		delete[] a;
 	}
+	else
+	{
+		std::cerr << "An error occured" << std::endl;
+		return (1);
+	}
+	return (0);
+}
+
+int main()
+{
+	if (main_process() == 1)
+		return (1);
+	return (0);
 }

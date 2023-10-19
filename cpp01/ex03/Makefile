@@ -5,15 +5,14 @@
 #                                                     +:+ +:+         +:+      #
 #    By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/10/15 16:12:36 by gothmane          #+#    #+#              #
-#    Updated: 2023/10/19 12:22:57 by gothmane         ###   ########.fr        #
+#    Created: 2023/10/19 12:20:52 by gothmane          #+#    #+#              #
+#    Updated: 2023/10/19 13:44:58 by gothmane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+NAME = attacker
 
-NAME = phonebook
-
-SRCS = Contact.cpp PhoneBook.cpp main.cpp
+SRCS = main.cpp HumanA.cpp HumanB.cpp Weapon.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
@@ -28,7 +27,7 @@ all: $(NAME)
 	$(CC) $(CFLAGS) -o $@ -c $<
 
 
-$(NAME):  $(OBJS) PhoneBook.hpp Contact.hpp
+$(NAME):  $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 	
 clean : 
