@@ -14,26 +14,30 @@
 #include <iostream>
 #include <string>
 
-int main() {
-    std::ifstream   in("input.txt");
-    std::ofstream   out("outfile.txt");
+void    ft_replace(std::string infile, std::string s1, std::string s2)
+{
+    std::ifstream   in(infile.c_str());
+    std::ofstream   out(infile.append(".replace").c_str());
     std::string     content;
-    std::string      s1 = "out";
-    std::string      s2 = "IN";
-    
-    if (in.is_open() && out.is_open()) 
+
+     if (in.is_open() && out.is_open()) 
     {
-        if (std::getline(in, content))
+        while (std::getline(in, content))
         {
             std::cout << "Test content: " << std::endl;
-            // std::cout << content << std::endl;
             int idx = content.find(s1);
+            if (idx == -1)
+                continue;
             std::cout << idx << std::endl;
             content.erase(idx, s1.size());
             content.insert(idx, s2);
-             std::cout << content << std::endl;
+            std::cout << content << std::endl;
         }
         in.close();
         out.close();
-    }  
+    }
+}
+
+int main() {
+    ft_replace("input.txt", "out", "WAAAAAAAAAAAAAAAAAAAAAAAAAA");
 }
