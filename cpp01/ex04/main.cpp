@@ -24,14 +24,16 @@ void    ft_replace(std::string infile, std::string s1, std::string s2)
     {
         while (std::getline(in, content))
         {
-            std::cout << "Test content: " << std::endl;
             int idx = content.find(s1);
             if (idx == -1)
+            {
+out << content << std::endl;
                 continue;
+            }
             std::cout << idx << std::endl;
             content.erase(idx, s1.size());
             content.insert(idx, s2);
-            std::cout << content << std::endl;
+            out << content << std::endl;
         }
         in.close();
         out.close();
