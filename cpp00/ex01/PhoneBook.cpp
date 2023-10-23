@@ -6,7 +6,7 @@
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 16:12:32 by gothmane          #+#    #+#             */
-/*   Updated: 2023/10/19 10:54:20 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/10/20 09:30:52 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,10 @@ std::string PhoneBook::printMessage(std::string message)
 		std::cout << message << std::endl;
 		std::getline(std::cin, inp);
 		if (std::cin.eof())
+		{
+			std::cout << "\033[1;31m>>>>>>> Terminated <<<<<<<<<\033[0m\n\n" << std::endl;
 			exit (1);
+		}
 	}
 	return (inp);
 }
@@ -58,6 +61,7 @@ void PhoneBook::AddContact(int idx)
 
 void PhoneBook::Exit()
 {
+	std::cout << "\033[1;31m>>>>>>> Terminated <<<<<<<<<\033[0m\n\n" << std::endl;
 	exit(0);
 }
 
@@ -83,7 +87,8 @@ void PhoneBook::Search(int idx)
 	(void)idx;
 	std::cout << "Searching..." << std::endl;
 	std::cout << "=============================================" << std::endl;
-	std::cout << "|" << std::left << std::setw(10) << "INDEX" << "|"  << std::setw(10) <<  "firstname |" << std::setw(10) <<  "lastname  |" << std::setw(10) <<  "Nickname  |"  << std::endl;
+	std::cout << "|" << std::left << std::setw(10) << "INDEX" << "|"  << std::setw(10)
+		 <<  "firstname |" << std::setw(10) <<  "lastname  |" << std::setw(10) <<  "Nickname  |"  << std::endl;
 	std::cout << "=============================================" << std::endl;
 	for (int i = 0; i < this->size; i++)
 	{
@@ -94,12 +99,15 @@ void PhoneBook::Search(int idx)
 		std::cout << "---------------------------------------------" << std::endl;
 	}
 	std::cout << "\n";
-	std::cout << "Give me an index from 1 to 8 in the contact" << std::endl;
+	std::cout << "Give me an index from 1 to " << this->size <<" in the contact" << std::endl;
 	while (input.empty())
 	{
 		std::getline(std::cin, input);
 		if (std::cin.eof())
+		{
+			std::cout << "\033[1;31m>>>>>>> Terminated <<<<<<<<<\033[0m\n\n" << std::endl;
 			exit (1);
+		}
 	}
 	index = std::atoi(input.c_str());
 	index--;
@@ -110,5 +118,9 @@ void PhoneBook::Search(int idx)
 		std::cout << "Your Nick name is " << this->list[index].getNickName() << std::endl;
 		std::cout << "Your Phone Number is " << this->list[index].getPhoneNumber() << std::endl;
 		std::cout << "Your Dark Secret is " << this->list[index].getDarkSecret() << std::endl;
+	}
+	else
+	{
+		std::cout << "Wrong Index! Getting Reseted" << std::endl;
 	}
 }

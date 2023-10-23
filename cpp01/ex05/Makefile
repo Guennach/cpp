@@ -5,22 +5,20 @@
 #                                                     +:+ +:+         +:+      #
 #    By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/10/19 11:04:33 by gothmane          #+#    #+#              #
-#    Updated: 2023/10/23 11:27:07 by gothmane         ###   ########.fr        #
+#    Created: 2023/10/20 10:14:50 by gothmane          #+#    #+#              #
+#    Updated: 2023/10/21 10:25:14 by gothmane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+NAME = harl
 
-NAME = zombie
-
-SRCS = Zombie.cpp newZombie.cpp main.cpp randomChump.cpp
-
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+SRCS = main.cpp Harl.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
 CC = c++
 
+CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 
 all: $(NAME)
@@ -29,7 +27,7 @@ all: $(NAME)
 	$(CC) $(CFLAGS) -o $@ -c $<
 
 
-$(NAME):  $(OBJS) Zombie.hpp
+$(NAME):  $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 	
 clean : 

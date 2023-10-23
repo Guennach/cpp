@@ -6,18 +6,10 @@
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 16:12:41 by gothmane          #+#    #+#             */
-/*   Updated: 2023/10/15 16:51:48 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/10/20 09:49:52 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-=> first name,
-=> last name,
-=> nickname,
-=> phone number,
-=> darkest secret.
-A saved contact can’t have empty fields
-*/
 
 #ifndef CONTACT_HPP
 #define CONTACT_HPP

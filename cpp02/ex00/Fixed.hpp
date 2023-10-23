@@ -1,39 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/15 16:12:34 by gothmane          #+#    #+#             */
-/*   Updated: 2023/10/20 09:50:17 by gothmane         ###   ########.fr       */
+/*   Created: 2023/10/23 12:49:06 by gothmane          #+#    #+#             */
+/*   Updated: 2023/10/23 13:15:39 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef FIXED_HPP
+#define FIXED_HPP
 
-#ifndef PHONEBOOK_HPP
-#define PHONEBOOK_HPP
-
-#include <string.h>
 #include <iostream>
-#include "Contact.hpp"
-#include <iomanip>
-#include <cstring>
 
-class PhoneBook
+class Fixed
 {
 	private:
-			Contact list[8];
-			int size;
+		int					fixedval;
+		static const int	fractionp = 8;
 	public:
-			void setSize(int size);
-			int getSize();
-			PhoneBook();
-			~PhoneBook();
-			void AddContact(int idx);
-			std::string printMessage(std::string message);
-			void Search(int idx);
-			void Exit();
+		Fixed();
+		~Fixed();
+		Fixed(const Fixed &value);
+		Fixed& operator=(const Fixed &v);
+		int getRawBits( void ) const;
+		void setRawBits(int const raw);
 };
 
 #endif

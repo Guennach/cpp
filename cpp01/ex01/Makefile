@@ -6,7 +6,7 @@
 #    By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/19 11:04:33 by gothmane          #+#    #+#              #
-#    Updated: 2023/10/19 12:21:44 by gothmane         ###   ########.fr        #
+#    Updated: 2023/10/21 10:24:57 by gothmane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,9 +34,9 @@ $(NAME):  $(OBJS) Zombie.hpp
 clean : 
 		rm -f $(OBJS)
 		
-fclean :
+fclean : clean
 	rm -f $(NAME)
 	
 re: fclean clean all
 
-.phony : all clean
+.phony : all clean re fclean

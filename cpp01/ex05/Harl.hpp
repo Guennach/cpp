@@ -1,39 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/15 16:12:34 by gothmane          #+#    #+#             */
-/*   Updated: 2023/10/20 09:50:17 by gothmane         ###   ########.fr       */
+/*   Created: 2023/10/20 10:14:53 by gothmane          #+#    #+#             */
+/*   Updated: 2023/10/20 12:26:02 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef HARL_HPP
+#define HARL_HPP
 
-#ifndef PHONEBOOK_HPP
-#define PHONEBOOK_HPP
-
-#include <string.h>
 #include <iostream>
-#include "Contact.hpp"
-#include <iomanip>
-#include <cstring>
+#include <string>
 
-class PhoneBook
+class Harl
 {
 	private:
-			Contact list[8];
-			int size;
+		void	debug(void);
+		void	info(void);
+		void	warning(void);
+		void	error(void);
 	public:
-			void setSize(int size);
-			int getSize();
-			PhoneBook();
-			~PhoneBook();
-			void AddContact(int idx);
-			std::string printMessage(std::string message);
-			void Search(int idx);
-			void Exit();
+		void	complain(std::string level);
+		Harl();
+		~Harl();
 };
 
 #endif

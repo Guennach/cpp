@@ -5,39 +5,40 @@
 #                                                     +:+ +:+         +:+      #
 #    By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/10/19 11:04:33 by gothmane          #+#    #+#              #
-#    Updated: 2023/10/23 11:27:07 by gothmane         ###   ########.fr        #
+#    Created: 2023/10/23 12:57:12 by gothmane          #+#    #+#              #
+#    Updated: 2023/10/23 13:02:05 by gothmane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-NAME = zombie
-
-SRCS = Zombie.cpp newZombie.cpp main.cpp randomChump.cpp
-
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+SRCS = Fixed.cpp main.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
 CC = c++
 
+CFLAGS = -Wall -Wextra -Werror -std=c++98
+
+NAME = Fixed
+
+all : $(NAME)
 
 
-all: $(NAME)
-
-%.o: %.cpp
+%.o : %.cpp
 	$(CC) $(CFLAGS) -o $@ -c $<
-
-
-$(NAME):  $(OBJS) Zombie.hpp
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 	
+	
+$(NAME) : $(OBJS)
+		$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
+
+
 clean : 
 		rm -f $(OBJS)
 		
 fclean : clean
-	rm -f $(NAME)
-	
-re: fclean clean all
+		rm -f $(NAME)
+		
 
-.phony : all clean re fclean
+re : fclean all
+
+.phony : all clean fclean re

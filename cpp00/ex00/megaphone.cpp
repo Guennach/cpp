@@ -6,14 +6,11 @@
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/15 15:35:26 by gothmane          #+#    #+#             */
-/*   Updated: 2023/10/15 16:09:23 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/10/21 10:07:47 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include <string>
-#include <cctype>
-
 
 std::string ft_toUpper_nd(char *str)
 {

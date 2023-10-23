@@ -6,7 +6,7 @@
 #    By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/19 12:20:52 by gothmane          #+#    #+#              #
-#    Updated: 2023/10/19 12:23:21 by gothmane         ###   ########.fr        #
+#    Updated: 2023/10/21 10:25:04 by gothmane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,9 +33,9 @@ $(NAME):  $(OBJS)
 clean : 
 		rm -f $(OBJS)
 		
-fclean :
+fclean : clean
 	rm -f $(NAME)
 	
 re: fclean clean all
 
-.phony : all clean
+.phony : all clean re fclean

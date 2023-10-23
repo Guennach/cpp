@@ -6,7 +6,7 @@
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 12:39:25 by gothmane          #+#    #+#             */
-/*   Updated: 2023/10/19 12:56:37 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/10/23 11:29:08 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ Weapon::Weapon(std::string tp){
 Weapon::~Weapon(){};
 
 
-std::string	Weapon::getType(){
+const std::string	&Weapon::getType(){
 	return (this->type);
 };
 

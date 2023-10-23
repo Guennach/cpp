@@ -6,7 +6,7 @@
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:04:39 by gothmane          #+#    #+#             */
-/*   Updated: 2023/10/19 11:30:04 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/10/21 10:13:24 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ Zombie::Zombie(std::string name){
 	this->name = name;
 };
 
-Zombie::~Zombie(){};
+Zombie::~Zombie(){
+	std::cout << "Zombie destructor named : " << this->name  << std::endl;
+};
 
 std::string Zombie::getName(){
 	return (this->name);

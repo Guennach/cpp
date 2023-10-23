@@ -1,34 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanA.hpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/19 12:39:21 by gothmane          #+#    #+#             */
-/*   Updated: 2023/10/21 10:31:23 by gothmane         ###   ########.fr       */
+/*   Created: 2023/10/20 10:14:54 by gothmane          #+#    #+#             */
+/*   Updated: 2023/10/20 12:46:54 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HUMAN_A
-#define HUMAN_A
+#include "Harl.hpp"
 
-#include "Weapon.hpp"
-
-class HumanA
+int main()
 {
-	private:
-		Weapon&		wp;
-		std::string	name;
-	public:
-		void		setName(std::string name);
-		Weapon		getWeapon();
-		std::string	getName();
-		void		attack();
-		// HumanA();
-		HumanA(std::string a, Weapon& b);
-		~HumanA();
-		
-};
-
-#endif
+	Harl h;
+	
+	h.complain("DEBUG");
+}
