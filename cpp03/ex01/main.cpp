@@ -1,39 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanA.cpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/19 12:39:22 by gothmane          #+#    #+#             */
-/*   Updated: 2023/10/24 15:02:05 by gothmane         ###   ########.fr       */
+/*   Created: 2023/10/26 09:59:34 by gothmane          #+#    #+#             */
+/*   Updated: 2023/10/26 12:14:18 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanA.hpp"
+#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
-HumanA::HumanA(std::string a, Weapon& b) : wp(b){
-	this->name = a;
-};
-
-HumanA::~HumanA(){};
-
-void HumanA::attack()
+int main()
 {
-	std::cout << this->name << " attacks with their " << this->wp.getType() << std::endl;
-}
+	ClapTrap a("telha");
 
-Weapon HumanA::getWeapon()
-{
-	return (this->wp);
-}
-
-void HumanA::setName(std::string name)
-{
-	this->name = name;
-}
-
-std::string HumanA::getName()
-{
-	return (this->name);
+	a.attack("ANA");
+	a.takeDamage(10);
+	a.takeDamage(10);
+	a.beRepaired(10);
+	
+	ScavTrap sv("Scav telha");
+	
+	sv.attack("ANA");
+	sv.takeDamage(10);
+	sv.takeDamage(10);
+	sv.beRepaired(10);
 }

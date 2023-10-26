@@ -6,7 +6,7 @@
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 13:49:49 by gothmane          #+#    #+#             */
-/*   Updated: 2023/10/23 12:11:31 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/10/25 08:52:00 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void ft_replace(std::string infile, std::string s1, std::string s2)
             exit(1);
         }
         indicator = 1;
-        while (std::getline(in, content))
+        while (std::getline(in, content, '\0'))
         {
             int idx = -1;
             while ((idx = content.find(s1)) != -1)
@@ -41,7 +41,7 @@ void ft_replace(std::string infile, std::string s1, std::string s2)
                 content.erase(idx, s1.size());
                 content.insert(idx, s2);
             }
-            out << content << std::endl;
+            out << content;
         }
         in.close();
         out.close();

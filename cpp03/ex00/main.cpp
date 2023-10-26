@@ -1,39 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanA.cpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/19 12:39:22 by gothmane          #+#    #+#             */
-/*   Updated: 2023/10/24 15:02:05 by gothmane         ###   ########.fr       */
+/*   Created: 2023/10/26 09:59:34 by gothmane          #+#    #+#             */
+/*   Updated: 2023/10/26 11:05:35 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanA.hpp"
+#include "ClapTrap.hpp"
 
-HumanA::HumanA(std::string a, Weapon& b) : wp(b){
-	this->name = a;
-};
-
-HumanA::~HumanA(){};
-
-void HumanA::attack()
+int main()
 {
-	std::cout << this->name << " attacks with their " << this->wp.getType() << std::endl;
-}
-
-Weapon HumanA::getWeapon()
-{
-	return (this->wp);
-}
-
-void HumanA::setName(std::string name)
-{
-	this->name = name;
-}
-
-std::string HumanA::getName()
-{
-	return (this->name);
+	ClapTrap b;
+	
+	a.setName("telha");
+	a.setAttackDmg(10);
+	a.setEnergyPoint(10);
+	a.setHitPoint(10);
+	
+	ClapTrap t(a);
+	
+	t.attack("ANA");
+	t.takeDamage(10);
+	t.takeDamage(10);
+	t.beRepaired(10);
 }

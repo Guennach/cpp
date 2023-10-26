@@ -1,39 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanA.cpp                                         :+:      :+:    :+:   */
+/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/19 12:39:22 by gothmane          #+#    #+#             */
-/*   Updated: 2023/10/24 15:02:05 by gothmane         ###   ########.fr       */
+/*   Created: 2023/10/26 11:07:28 by gothmane          #+#    #+#             */
+/*   Updated: 2023/10/26 11:51:12 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanA.hpp"
+#ifndef SCAVTRAP_HPP
+#define SCAVTRAP_HPP
 
-HumanA::HumanA(std::string a, Weapon& b) : wp(b){
-	this->name = a;
+#include "ClapTrap.hpp"
+
+class ScavTrap : public ClapTrap
+{
+	
+	public:
+		ScavTrap(std::string name);
+		~ScavTrap();
+		ScavTrap(const ScavTrap &st);
+		void guardGate();
 };
 
-HumanA::~HumanA(){};
-
-void HumanA::attack()
-{
-	std::cout << this->name << " attacks with their " << this->wp.getType() << std::endl;
-}
-
-Weapon HumanA::getWeapon()
-{
-	return (this->wp);
-}
-
-void HumanA::setName(std::string name)
-{
-	this->name = name;
-}
-
-std::string HumanA::getName()
-{
-	return (this->name);
-}
+#endif
