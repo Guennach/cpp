@@ -6,7 +6,7 @@
 #    By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/23 12:57:12 by gothmane          #+#    #+#              #
-#    Updated: 2023/10/23 13:02:05 by gothmane         ###   ########.fr        #
+#    Updated: 2023/10/26 13:17:06 by gothmane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ CC = c++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-NAME = Fixed
+NAME = Fixed00
 
 all : $(NAME)
 

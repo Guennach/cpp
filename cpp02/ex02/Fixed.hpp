@@ -6,7 +6,7 @@
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 12:49:06 by gothmane          #+#    #+#             */
-/*   Updated: 2023/10/25 14:49:10 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/10/26 13:27:21 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ public:
 	bool operator<=(Fixed &f1);
 	bool operator!=(Fixed &f1);
 	bool operator==(Fixed &f1);
-	Fixed operator++(int);
-	Fixed operator--(int);
 	Fixed& operator++();
 	Fixed& operator--();
+	Fixed operator++(int);
+	Fixed operator--(int);
 	Fixed operator+(Fixed &f1) const;
 	Fixed operator/(Fixed &f1) const;
 	Fixed operator-(Fixed &f1) const;

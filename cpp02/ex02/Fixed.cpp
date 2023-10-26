@@ -6,24 +6,21 @@
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 12:49:04 by gothmane          #+#    #+#             */
-/*   Updated: 2023/10/25 14:48:43 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/10/26 13:29:58 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
 Fixed::Fixed(){
-	// std::cout << "Default constructor called" << std::endl;
 	this->fixedval = 0;
 };
 
 Fixed::~Fixed(){
-	// std::cout << "Destructor called" << std::endl;
 };
 
 Fixed::Fixed(const Fixed &value){
 	this->fixedval = value.getRawBits();
-	// std::cout << "Copy assignment operator called" << std::endl;
 };
 
 Fixed::Fixed(const int value){
@@ -106,26 +103,26 @@ Fixed Fixed::operator/(Fixed &f1) const
 	return (Fixed(this->toFloat() / f1.toFloat()));
 }
 
-Fixed Fixed::operator++(int) 
+Fixed& Fixed::operator++() 
 {
 	this->fixedval++;
 	return (*this);
 }
 
-Fixed Fixed::operator--(int) 
+Fixed& Fixed::operator--() 
 {
 	this->fixedval--;
 	return (*this);
 }
 
-Fixed& Fixed::operator++() {
-    Fixed& temp = *this;
+Fixed Fixed::operator++(int) {
+    Fixed temp = *this;
     this->fixedval++;
     return temp;
 }
 
-Fixed& Fixed::operator--() {
-    Fixed& temp = *this;
+Fixed Fixed::operator--(int) {
+    Fixed temp = *this;
     this->fixedval--;
     return temp;
 }
