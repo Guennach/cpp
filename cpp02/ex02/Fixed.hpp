@@ -41,6 +41,7 @@ public:
 	bool operator<=(Fixed &f1);
 	bool operator!=(Fixed &f1);
 	bool operator==(Fixed &f1);
+	Fixed& operator=(const Fixed &v);
 	Fixed& operator++();
 	Fixed& operator--();
 	Fixed operator++(int);

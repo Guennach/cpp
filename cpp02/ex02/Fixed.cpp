@@ -27,8 +27,14 @@ Fixed::Fixed(const int value){
 	this->fixedval = value * 256;
 };
 
+Fixed& Fixed::operator=(const Fixed &v)
+{
+	this->fixedval = v.getRawBits();
+	return (*this);
+}
+
 Fixed::Fixed(const float value){
-	this->fixedval = roundf(value * 256.0f);
+	this->fixedval = roundf(value * 256);
 };
 
 std::ostream& operator<<(std::ostream& os,const Fixed& v)

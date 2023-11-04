@@ -6,7 +6,7 @@
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 09:59:31 by gothmane          #+#    #+#             */
-/*   Updated: 2023/10/26 12:15:30 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/11/01 14:33:01 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,23 +22,20 @@ class ClapTrap{
 		int			EnergyPoint;
 		unsigned int		AttackDmg;
 	public:
-		void attack(const std::string& target);
+		virtual void attack(const std::string& target);
 		void takeDamage(unsigned int amount);
 		void beRepaired(unsigned int amount);
 		//Const, dest, copy const
-		ClapTrap(std::string Name);
-		~ClapTrap();
+		virtual ~ClapTrap();
+		ClapTrap();
 		ClapTrap(const ClapTrap &ct);
-		//Setters
-		void setName(std::string name);
-		void setHitPoint(int hp);
-		void setEnergyPoint(int ep);
-		void setAttackDmg(unsigned int ad);
+		ClapTrap& operator=(const ClapTrap &ct);
+		ClapTrap(std::string Name);
 		//Getters
-		std::string getName();
-		int			getHitPoint();
-		int			getEnergyPoint();
-		int			getAttackDmg();
+		std::string getName()const ;
+		int			getHitPoint() const;
+		int			getEnergyPoint() const;
+		int			getAttackDmg() const;
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 11:07:28 by gothmane          #+#    #+#             */
-/*   Updated: 2023/10/26 11:55:54 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/11/01 13:35:26 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,11 @@ class FragTrap : public ClapTrap
 	public:
 		FragTrap(std::string name);
 		~FragTrap();
+		FragTrap();
 		FragTrap(const FragTrap &st);
 		void highFivesGuys(void);
+		void attack(const std::string& target);
+		FragTrap& operator=(const FragTrap &ct);
 };
 
 #endif

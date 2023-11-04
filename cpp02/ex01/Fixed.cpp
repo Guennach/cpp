@@ -22,16 +22,25 @@ Fixed::~Fixed(){
 };
 
 Fixed::Fixed(const Fixed &value){
+	std::cout << "Copy constructor called" << std::endl;
 	this->fixedval = value.getRawBits();
-	std::cout << "Copy assignment operator called" << std::endl;
 };
 
+Fixed& Fixed::operator=(const Fixed &v)
+{
+	std::cout << "Copy assignment operator called" << std::endl;
+	this->fixedval = v.getRawBits();
+	return (*this);
+}
+
 Fixed::Fixed(const int value){
-	this->fixedval = value * 256;
+	std::cout << "Int constructor called" << std::endl;
+	this->fixedval = value * (1 << this->fractionp);
 };
 
 Fixed::Fixed(const float value){
-	this->fixedval = roundf(value * 256.0f);
+	std::cout << "Float constructor called" << std::endl;
+	this->fixedval = roundf(value * (1 << this->fractionp));
 };
 
 std::ostream& operator<<(std::ostream& os,const Fixed& v)

@@ -6,7 +6,7 @@
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 09:59:33 by gothmane          #+#    #+#             */
-/*   Updated: 2023/10/26 12:16:08 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/11/01 13:55:21 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,18 @@ ClapTrap::~ClapTrap(){
 ClapTrap::ClapTrap(const ClapTrap &ct)
 {
 	*this = ct;
+	std::cout << "ClapTrap copied" << std::endl;
 }
+
+ClapTrap::ClapTrap(){
+	std::cout << "ClapTrap created" << std::endl;
+};
 
 void ClapTrap::attack(const std::string& target)
 {
-	//ClapTrap <name> attacks <target>, causing <damage> points of damage!
-	if (this->EnergyPoint > 0 || this->HitPoint > 0)
+	if (this->EnergyPoint > 0)
 	{
 		std::cout << "ClapTrap " << this->Name << " attacks " << target << ", causing " << this->AttackDmg << " points of damage!" << std::endl;
-		this->HitPoint -= this->AttackDmg;
 		this->EnergyPoint--;
 	}
 	else
@@ -44,63 +47,55 @@ void ClapTrap::attack(const std::string& target)
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
-	if (this->EnergyPoint > 0 || this->HitPoint > 0 || this->AttackDmg >= amount)
+	if (this->HitPoint > 0 || (unsigned int) this->HitPoint >= amount)
 	{
-		this->AttackDmg -= amount;
-		std::cout << amount << " of damage have been taken from  " << this->Name << std::endl;
+		this->HitPoint -= amount;
+		std::cout << amount << " of damage have been taken from " << this->Name << std::endl << "The new hit point value gonna be = " << this->HitPoint << std::endl;
 	}
 	else
-		std::cout << "The amount is bigger than the actual damage" << std::endl;
+		std::cout << "Can't procced with that action" << std::endl;
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
-	if (this->EnergyPoint > 0 || this->HitPoint > 0)
+	if (this->EnergyPoint > 0)
 	{
-		this->AttackDmg += amount;
-		std::cout << amount << " of damage have been given from  " << this->Name << std::endl;
+		this->HitPoint += amount;
+		std::cout << amount << " of damage have been given from " << this->Name << std::endl << "The new hit point value gonna be = " << this->HitPoint << std::endl;
 		this->EnergyPoint--;
 	}
 	else
 		std::cout << "No energy or Hit Point left!" << std::endl;
 }
 
-void ClapTrap::setName(std::string name)
-{
-	this->Name = name;
-}
-
-void ClapTrap::setHitPoint(int hp)
-{
-	this->HitPoint = hp;
-}
-
-void ClapTrap::setEnergyPoint(int ep)
-{
-	this->EnergyPoint = ep;
-}
-
-void ClapTrap::setAttackDmg(unsigned int ad)
-{
-	this->AttackDmg = ad;
-}
-
-std::string ClapTrap::getName()
+std::string ClapTrap::getName() const
 {
 	return (this->Name);
 }
 
-int			ClapTrap::getHitPoint()
+int			ClapTrap::getHitPoint() const
 {
 	return (this->HitPoint);
 }
 
-int			ClapTrap::getEnergyPoint()
+int			ClapTrap::getEnergyPoint() const
 {
 	return (this->EnergyPoint);
 }
 
-int			ClapTrap::getAttackDmg()
+int			ClapTrap::getAttackDmg() const
 {
 	return (this->AttackDmg);
+}
+
+ClapTrap& ClapTrap::operator=(const ClapTrap &ct)
+{
+	if (this != &ct)
+	{
+		this->Name = ct.getName();
+		this->AttackDmg = ct.getAttackDmg();
+		this->EnergyPoint = ct.getEnergyPoint();
+		this->HitPoint = ct.getHitPoint();
+	}
+	return (*this);
 }
