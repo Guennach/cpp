@@ -6,7 +6,7 @@
 /*   By: gothmane <gothmane@student.1337.>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 10:18:51 by gothmane          #+#    #+#             */
-/*   Updated: 2023/11/04 10:28:40 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/11/08 15:49:18 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ class ICharacter
 };
 
 #include "AMateria.hpp"
+
 
 #endif

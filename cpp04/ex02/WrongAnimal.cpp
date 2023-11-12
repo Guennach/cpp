@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   WrongAnimal.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: gothmane <gothmane@student.1337.>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 10:02:28 by gothmane          #+#    #+#             */
-/*   Updated: 2023/11/02 11:38:55 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/11/07 16:24:18 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,7 @@ void WrongAnimal::setType(std::string type)
 WrongAnimal& WrongAnimal::operator=(const WrongAnimal &wa)
 {
     if (this != &wa)
-    {
         this->type = wa.getType();
-    }
     return (*this);
 }
 

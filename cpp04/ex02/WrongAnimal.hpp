@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: gothmane <gothmane@student.1337.>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 10:02:30 by gothmane          #+#    #+#             */
-/*   Updated: 2023/11/02 11:41:17 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/11/08 15:26:49 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 class WrongAnimal
 {
-    private:
+    protected:
         std::string type;
     public:
         WrongAnimal();

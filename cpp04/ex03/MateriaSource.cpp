@@ -6,7 +6,7 @@
 /*   By: gothmane <gothmane@student.1337.>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 10:51:39 by gothmane          #+#    #+#             */
-/*   Updated: 2023/11/04 14:37:45 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/11/08 15:49:28 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,32 +33,40 @@ MateriaSource::MateriaSource(MateriaSource &ms)
 
 void MateriaSource::learnMateria(AMateria *ora)
 {
-    int check = 0;
-
+    if (ora == NULL)
+        return ;
     for (int i = 0; i < 4; i++)
     {
         if (!this->stocks[i])
         {
             this->stocks[i] = ora;
-            check = 1;
-            break;
+            return ;
         }
     }
-    if (check == 0)
-        std::cout << "Sorry! There's no place in the STOCKS !" << std::endl;
+    std::cout << "Sorry! There's no place in the STOCKS !" << std::endl;
 }
 
 AMateria* MateriaSource::createMateria(std::string const & type)
 {
-    int check = 0;
-
     for (int i = 0; i < 4; i++)
     {
         if (this->stocks[i] && this->stocks[i]->getType() == type)
             return (this->stocks[i]->clone());
-        // std::cout << type << std::endl;
     }
-    if (check == 0)
-        std::cout << "Sorry! That materia's not found!" << std::endl;
+    std::cout << "Sorry! That materia's not found!" << std::endl;
     return (NULL);
+}
+
+MateriaSource& MateriaSource::operator=(const MateriaSource &a)
+{
+    if (this != &a)
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            if (this->stocks[i])
+                delete this->stocks[i];
+            this->stocks[i] = a.stocks[i];
+        }
+    }
+    return (*this);
 }

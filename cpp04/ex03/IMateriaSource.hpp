@@ -6,7 +6,7 @@
 /*   By: gothmane <gothmane@student.1337.>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 10:18:55 by gothmane          #+#    #+#             */
-/*   Updated: 2023/11/04 10:22:52 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/11/08 15:05:13 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #define IMATERIASOURCE_HPP
 
 #include <iostream>
+#include "AMateria.hpp"
 
 class AMateria;
 
@@ -27,6 +28,6 @@ class IMateriaSource
         virtual AMateria* createMateria(std::string const & type) = 0;
 };
 
-#include "AMateria.hpp"
+
 
 #endif

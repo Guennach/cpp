@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: gothmane <gothmane@student.1337.>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 09:59:53 by gothmane          #+#    #+#             */
-/*   Updated: 2023/11/02 11:02:53 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/11/07 15:28:49 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class Animal {
         Animal& operator=(const Animal &a);
         void setType(std::string type);
         std::string getType() const;
-        virtual void makeSound() const; 
+        virtual void makeSound() const;
 };
 
 #endif

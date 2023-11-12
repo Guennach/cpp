@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   WrongCat.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: gothmane <gothmane@student.1337.>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 10:02:26 by gothmane          #+#    #+#             */
-/*   Updated: 2023/11/02 11:39:09 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/11/08 15:18:48 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,10 @@
 #define WRONGCAT_HPP
 
 #include <iostream>
-
 #include "WrongAnimal.hpp"
+
 class WrongCat : public WrongAnimal
 {
-    private:
-        std::string type;
     public:
         WrongCat();
         ~WrongCat();

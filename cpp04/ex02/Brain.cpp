@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Brain.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: gothmane <gothmane@student.1337.>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 12:36:35 by gothmane          #+#    #+#             */
-/*   Updated: 2023/11/02 13:08:32 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/11/07 16:23:44 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,14 @@ Brain::~Brain(){};
 Brain::Brain(Brain &br)
 {
     *this = br;
+}
+
+Brain& Brain::operator=(const Brain &b)
+{
+    if (this != &b)
+    {
+        for (int i = 0; i < 100; i++)
+            this->ideas[i] = b.ideas[i];
+    }
+    return (*this);
 }

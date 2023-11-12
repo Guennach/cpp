@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: gothmane <gothmane@student.1337.>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 09:59:56 by gothmane          #+#    #+#             */
-/*   Updated: 2023/11/02 11:33:37 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/11/07 16:26:18 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,7 @@ Cat::~Cat(){
 Cat& Cat::operator=(const Cat &c)
 {
     if (this != &c)
-    {
         this->type = c.getType();
-    }
     return (*this);
 }
 

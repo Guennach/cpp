@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: gothmane <gothmane@student.1337.>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 10:00:00 by gothmane          #+#    #+#             */
-/*   Updated: 2023/11/02 11:14:26 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/11/07 16:26:14 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,7 @@ Dog::~Dog(){
 Dog& Dog::operator=(const Dog &c)
 {
     if (this != &c)
-    {
         this->type = c.getType();
-    }
     return (*this);
 }
 

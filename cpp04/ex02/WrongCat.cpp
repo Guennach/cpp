@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   WrongCat.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: gothmane <gothmane@student.1337.>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 10:02:24 by gothmane          #+#    #+#             */
-/*   Updated: 2023/11/02 11:39:45 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/11/07 16:24:21 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,7 @@ WrongCat::WrongCat(const WrongCat &wa)
 WrongCat& WrongCat::operator=(const WrongCat &wa)
 {
     if (this != &wa)
-    {
         this->type = wa.getType();
-    }
     return (*this);
 }
 

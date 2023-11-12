@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Animal.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: g <gothmane@student.1337.>                 +#+  +:+       +#+        */
+/*   By: gothmane <gothmane@student.1337.>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 09:59:29 by gothmane          #+#    #+#             */
-/*   Updated: 2023/11/04 07:37:54 by g                ###   ########.fr       */
+/*   Updated: 2023/11/07 16:24:47 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,6 @@ void Animal::setType(std::string tp)
 Animal& Animal::operator=(const Animal &a)
 {
     if (this != &a)
-    {
         this->type = a.getType();
-    }
     return (*this);
 }
-

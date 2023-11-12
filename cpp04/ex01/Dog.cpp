@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: gothmane <gothmane@student.1337.>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 10:00:00 by gothmane          #+#    #+#             */
-/*   Updated: 2023/11/02 14:37:24 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/11/08 15:31:57 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "Dog.hpp"
-
 
 Dog::Dog()
 {
@@ -23,6 +21,7 @@ Dog::Dog()
 
 Dog::Dog(const Dog &a)
 {
+    this->br = NULL;
     *this = a;
 }
 
@@ -35,11 +34,13 @@ Dog& Dog::operator=(const Dog &c)
 {
     if (this != &c)
     {
+        if(this->br)
+            delete this->br;
         this->type = c.getType();
+        this->br = new Brain(*c.br);
     }
     return (*this);
 }
-
 
 void Dog::makeSound() const
 {
