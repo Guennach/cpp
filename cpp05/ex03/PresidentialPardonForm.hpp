@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gothmane <gothmane@student.1337.>          +#+  +:+       +#+        */
+/*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 11:11:42 by gothmane          #+#    #+#             */
-/*   Updated: 2023/11/12 14:36:04 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/11/16 14:22:32 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "iostream"
 #include <iostream>
 #include "AForm.hpp"
 #include <fstream>
@@ -24,8 +23,9 @@ class PresidentialPardonForm : public AForm
         std::string target;
     public:
         PresidentialPardonForm();
-        PresidentialPardonForm(PresidentialPardonForm &n);
+        PresidentialPardonForm(const PresidentialPardonForm &n);
         PresidentialPardonForm(std::string target);
         ~PresidentialPardonForm();
         void execute(Bureaucrat const &e) const;
+        PresidentialPardonForm& operator=(const PresidentialPardonForm &f);
 };

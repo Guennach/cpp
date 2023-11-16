@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   C.hpp                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/09 14:33:57 by gothmane          #+#    #+#             */
-/*   Updated: 2023/11/16 14:21:09 by gothmane         ###   ########.fr       */
+/*   Created: 2023/11/16 15:13:59 by gothmane          #+#    #+#             */
+/*   Updated: 2023/11/16 15:45:33 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bureaucrat.hpp"
+#include <iostream>
+#include "Base.hpp"
 
-int main()
+class C : public Base
 {
-    try
-    {
-        Bureaucrat b("BEEEEEZ", 1);
-        // b.decrementGrade();
-        b.incrementGrade();
-        // b.incrementGrade();
-        std::cout << b << b;
-    }
-    catch (const std::exception &e)
-    {
-        std::cerr << e.what() << '\n';
-    }
-}
+public:
+    C();
+    C(const C &b);
+    ~C();
+    C &operator=(const C &b);
+};

@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Serializer.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/09 14:33:57 by gothmane          #+#    #+#             */
-/*   Updated: 2023/11/16 14:21:09 by gothmane         ###   ########.fr       */
+/*   Created: 2023/11/16 14:19:27 by gothmane          #+#    #+#             */
+/*   Updated: 2023/11/16 15:09:28 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bureaucrat.hpp"
+#include <iostream>
+#include <fstream>
 
-int main()
+
+struct Data
 {
-    try
-    {
-        Bureaucrat b("BEEEEEZ", 1);
-        // b.decrementGrade();
-        b.incrementGrade();
-        // b.incrementGrade();
-        std::cout << b << b;
-    }
-    catch (const std::exception &e)
-    {
-        std::cerr << e.what() << '\n';
-    }
-}
+    int idx;
+    std::string data_type;
+};
+
+
+class Serializer
+{
+    private:
+        Data* ptr;
+        Serializer();
+        Serializer(const Serializer &s);
+        Serializer& operator=(const Serializer &a);
+        ~Serializer();
+    public:
+        static uintptr_t serialize(Data* ptr);
+        static Data* deserialize(uintptr_t raw);
+};

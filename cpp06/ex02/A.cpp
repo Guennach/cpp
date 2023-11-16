@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   A.cpp                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/09 14:33:57 by gothmane          #+#    #+#             */
-/*   Updated: 2023/11/16 14:21:09 by gothmane         ###   ########.fr       */
+/*   Created: 2023/11/16 15:14:09 by gothmane          #+#    #+#             */
+/*   Updated: 2023/11/16 15:47:42 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bureaucrat.hpp"
+#include "A.hpp"
 
-int main()
+A::A(){}
+
+A::~A(){}
+
+A::A(const A &b)
 {
-    try
+    *this = b;
+}
+
+A& A::operator=(const A &b)
+{
+    if (this != &b)
     {
-        Bureaucrat b("BEEEEEZ", 1);
-        // b.decrementGrade();
-        b.incrementGrade();
-        // b.incrementGrade();
-        std::cout << b << b;
+        (void) b;
     }
-    catch (const std::exception &e)
-    {
-        std::cerr << e.what() << '\n';
-    }
+    return (*this);
 }

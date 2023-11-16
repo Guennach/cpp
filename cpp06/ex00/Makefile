@@ -5,12 +5,12 @@
 #                                                     +:+ +:+         +:+      #
 #    By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/11/09 14:34:05 by gothmane          #+#    #+#              #
-#    Updated: 2023/11/16 14:22:01 by gothmane         ###   ########.fr        #
+#    Created: 2023/11/15 10:48:10 by gothmane          #+#    #+#              #
+#    Updated: 2023/11/16 15:18:21 by gothmane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS =  Bureaucrat.cpp main.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp
+SRCS = ScalarConverter.cpp main.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
@@ -18,16 +18,16 @@ CC = c++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-NAME = Bro
+NAME = convert
 
 all : $(NAME)
 
 
-%.o : %.cpp Bureaucrat.hpp AForm.hpp ShrubberyCreationForm.hpp RobotomyRequestForm.hpp PresidentialPardonForm.hpp
+%.o : %.cpp
 	$(CC) $(CFLAGS) -o $@ -c $<
 	
 	
-$(NAME) : $(OBJS)
+$(NAME) : $(OBJS) ScalarConverter.hpp
 		$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 
 

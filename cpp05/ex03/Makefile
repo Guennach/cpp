@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gothmane <gothmane@student.1337.>          +#+  +:+       +#+         #
+#    By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/09 14:34:05 by gothmane          #+#    #+#              #
-#    Updated: 2023/11/12 15:51:00 by gothmane         ###   ########.fr        #
+#    Updated: 2023/11/16 14:22:37 by gothmane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,11 +23,11 @@ NAME = Bro
 all : $(NAME)
 
 
-%.o : %.cpp
+%.o : %.cpp 
 	$(CC) $(CFLAGS) -o $@ -c $<
 	
 	
-$(NAME) : $(OBJS)
+$(NAME) : $(OBJS) Bureaucrat.hpp AForm.hpp ShrubberyCreationForm.hpp RobotomyRequestForm.hpp PresidentialPardonForm.hpp Intern.hpp
 		$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 
 

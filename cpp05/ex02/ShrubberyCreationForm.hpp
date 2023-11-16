@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gothmane <gothmane@student.1337.>          +#+  +:+       +#+        */
+/*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 10:56:53 by gothmane          #+#    #+#             */
-/*   Updated: 2023/11/12 14:01:00 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/11/16 14:22:15 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "iostream"
 #include <iostream>
 #include "AForm.hpp"
 #include <fstream>
@@ -24,8 +23,9 @@ class ShrubberyCreationForm : public AForm
         std::string target;
     public:
         ShrubberyCreationForm();
-        ShrubberyCreationForm(ShrubberyCreationForm &n);
+        ShrubberyCreationForm(const ShrubberyCreationForm &n);
         ShrubberyCreationForm(std::string target);
         ~ShrubberyCreationForm();
         void execute(Bureaucrat const &e) const;
+        ShrubberyCreationForm& operator=(const ShrubberyCreationForm &f);
 };

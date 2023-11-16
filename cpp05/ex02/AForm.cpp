@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AForm.cpp                                           :+:      :+:    :+:   */
+/*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gothmane <gothmane@student.1337.>          +#+  +:+       +#+        */
+/*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/10 11:14:34 by gothmane          #+#    #+#             */
-/*   Updated: 2023/11/12 11:08:47 by gothmane         ###   ########.fr       */
+/*   Created: 2023/11/16 14:21:35 by gothmane          #+#    #+#             */
+/*   Updated: 2023/11/16 15:22:13 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
+
 #include "AForm.hpp"
 
-AForm::AForm() : si_grade(1), ex_grade(1)
+AForm::AForm() : name("default"), sign(false), si_grade(1), ex_grade(1)
 {
     std::cout << "AForm constructed" << std::endl;
 }
 
-AForm::AForm(std::string name, bool sign, int sg, int eg) : name(name) , sign(sign) ,si_grade(sg), ex_grade(eg)
+AForm::AForm(std::string name, bool sign, int sg, int eg) : name(name) , sign(sign) , si_grade(sg), ex_grade(eg)
 {
     std::cout << "AForm constructed" << std::endl;
 }
@@ -27,9 +29,9 @@ AForm::~AForm()
     std::cout << "AForm destructed" << std::endl;
 }
 
-AForm::AForm(const AForm &f) :  name(f.name) , si_grade(f.si_grade), ex_grade(f.ex_grade)
+AForm::AForm(const AForm &f) : name(f.name) , si_grade(f.si_grade), ex_grade(f.ex_grade)
 {
-    this->sign = f.sign;
+    *this = f;
     std::cout << "AForm copied" << std::endl;
 }
 
@@ -68,28 +70,15 @@ int AForm::getExGrade() const
     return (this->ex_grade);
 }
 
-// void AForm::setSign(bool si)
-// {
-//     this->sign = si;
-// }
-
-
-
 void AForm::beSigned(Bureaucrat const &b)
 {
-    try
-    {
-        if (b.getGrade() > 150)
-            throw low_ex;
-        else if (b.getGrade() < 1)
-            throw high_ex;
-       if (this->si_grade < b.getGrade())
-            this->sign = false;
-       else
-           this->sign = true;
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-    }
+    if (this->si_grade < b.getGrade())
+        throw GradeTooLowException();
+    else
+        this->sign = true;
+}
+
+const char *AForm::GradeTooLowException::what() const throw()
+{
+    return "\033[1;31mGradeTooLowException\033[0m";
 }

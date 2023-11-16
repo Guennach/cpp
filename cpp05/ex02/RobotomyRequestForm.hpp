@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gothmane <gothmane@student.1337.>          +#+  +:+       +#+        */
+/*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 11:11:49 by gothmane          #+#    #+#             */
-/*   Updated: 2023/11/12 14:29:11 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/11/16 14:22:11 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "iostream"
 #include <iostream>
 #include "AForm.hpp"
 #include <fstream>
@@ -24,8 +23,9 @@ class RobotomyRequestForm : public AForm
         std::string target;
     public:
         RobotomyRequestForm();
-        RobotomyRequestForm(RobotomyRequestForm &n);
+        RobotomyRequestForm(const RobotomyRequestForm &n);
         RobotomyRequestForm(std::string target);
         ~RobotomyRequestForm();
         void execute(Bureaucrat const &e) const;
+        RobotomyRequestForm& operator=(const RobotomyRequestForm &f);
 };

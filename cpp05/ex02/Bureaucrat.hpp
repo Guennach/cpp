@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gothmane <gothmane@student.1337.>          +#+  +:+       +#+        */
+/*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:33:54 by gothmane          #+#    #+#             */
-/*   Updated: 2023/11/12 14:40:47 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/11/16 14:21:56 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,21 +38,19 @@ public:
     void executeForm(AForm const & form);
     class GradeTooHighException : public std::exception
     {
-        virtual const char *what() const throw()
-        {
-            return "\033[1;31mGradeTooHighException\033[0m";
-        }
+        virtual const char *what() const throw();
     } high_ex;
 
     class GradeTooLowException : public std::exception
     {
-        virtual const char *what() const throw()
-        {
-            return "\033[1;33mGradeTooLowException\033[0m";
-        }
+        virtual const char *what() const throw();
     } low_ex;
+    class BeSignedException : public std::exception
+    {
+        virtual const char *what() const throw();
+    } besigned_ex;
 };
 
-std::ostream& operator<<(std::ostream& os, Bureaucrat &b);
+std::ostream& operator<<(std::ostream& os, const Bureaucrat &b);
 
 #include "AForm.hpp"

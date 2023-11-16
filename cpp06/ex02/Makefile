@@ -5,12 +5,12 @@
 #                                                     +:+ +:+         +:+      #
 #    By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/11/09 14:34:05 by gothmane          #+#    #+#              #
-#    Updated: 2023/11/16 14:22:01 by gothmane         ###   ########.fr        #
+#    Created: 2023/11/16 15:12:51 by gothmane          #+#    #+#              #
+#    Updated: 2023/11/16 15:19:19 by gothmane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS =  Bureaucrat.cpp main.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp
+SRCS =  Base.cpp A.cpp B.cpp C.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
@@ -23,11 +23,11 @@ NAME = Bro
 all : $(NAME)
 
 
-%.o : %.cpp Bureaucrat.hpp AForm.hpp ShrubberyCreationForm.hpp RobotomyRequestForm.hpp PresidentialPardonForm.hpp
+%.o : %.cpp 
 	$(CC) $(CFLAGS) -o $@ -c $<
 	
 	
-$(NAME) : $(OBJS)
+$(NAME) : $(OBJS) Base.hpp A.hpp B.hpp C.hpp
 		$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 
 

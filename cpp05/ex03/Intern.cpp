@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Intern.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gothmane <gothmane@student.1337.>          +#+  +:+       +#+        */
+/*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 14:51:22 by gothmane          #+#    #+#             */
-/*   Updated: 2023/11/12 15:50:48 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/11/16 14:22:45 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,17 @@
 Intern::Intern(){}
 
 Intern::~Intern(){}
+
+Intern::Intern(const Intern &i)
+{
+    *this = i;
+}
+
+Intern& Intern::operator=(const Intern &i)
+{
+    (void) i;
+    return (*this);
+}
 
 AForm*    Intern::makeForm(std::string name, std::string target)
 {
@@ -30,10 +41,13 @@ AForm*    Intern::makeForm(std::string name, std::string target)
             switch (i)
             {
                 case 0 :
+                    std::cout << "Intern creates " << name << std::endl;
                     return (new ShrubberyCreationForm(target));
                 case 1 :
+                    std::cout << "Intern creates " << name << std::endl;
                     return (new PresidentialPardonForm(target));
                 case 2 :
+                    std::cout << "Intern creates " << name << std::endl;
                     return (new RobotomyRequestForm(target));
             }
     }

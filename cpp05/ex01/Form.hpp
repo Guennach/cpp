@@ -6,7 +6,7 @@
 /*   By: gothmane <gothmane@student.1337.>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:14:30 by gothmane          #+#    #+#             */
-/*   Updated: 2023/11/12 10:34:25 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/11/16 14:11:29 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 #include <iostream>
 #include <exception>
-
 
 class Bureaucrat;
 
@@ -38,24 +37,9 @@ class Form
         int getExGrade() const;
         // setter
         void setSign(bool s);
-        void beSigned(Bureaucrat &b);
-    class GradeTooHighException : public std::exception
-    {
-        virtual const char *what() const throw()
-        {
-            return "\033[1;31mGradeTooHighException\033[0m";
-        }
-    } high_ex;
+        void beSigned(Bureaucrat const &b);
 
-    class GradeTooLowException : public std::exception
-    {
-        virtual const char *what() const throw()
-        {
-            return "\033[1;33mGradeTooLowException\033[0m";
-        }
-    } low_ex;
 };
-
 
 std::ostream& operator<<(std::ostream& os, Form &b);
 

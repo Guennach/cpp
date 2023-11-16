@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gothmane <gothmane@student.1337.>          +#+  +:+       +#+        */
+/*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:14:30 by gothmane          #+#    #+#             */
-/*   Updated: 2023/11/12 14:48:29 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/11/16 15:22:05 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 #include <iostream>
 #include <exception>
+#include "Bureaucrat.hpp"
 
-
-class Bureaucrat;
 
 class AForm
 {
@@ -38,34 +37,12 @@ class AForm
         int getSiGrade() const;
         int getExGrade() const;
         // setter
-        // void setSign(bool s);
         void beSigned(Bureaucrat const &b);
-    class GradeTooHighException : public std::exception
+         class GradeTooLowException : public std::exception
     {
-        virtual const char *what() const throw()
-        {
-            return "\033[1;31mGradeTooHighException\033[0m";
-        }
-    } high_ex;
-
-    class GradeTooLowException : public std::exception
-    {
-        virtual const char *what() const throw()
-        {
-            return "\033[1;33mGradeTooLowException\033[0m";
-        }
+        virtual const char *what() const throw();
     } low_ex;
-
-    class ShouldBeSignedException : public std::exception
-    {
-        virtual const char *what() const throw()
-        {
-            return "\033[1;33mShouldBeSignedException\033[0m";
-        }
-    } besigned_ex;
 };
 
 
 std::ostream& operator<<(std::ostream& os, AForm &b);
-
-#include "Bureaucrat.hpp"

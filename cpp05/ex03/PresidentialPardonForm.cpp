@@ -3,30 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   PresidentialPardonForm.cpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gothmane <gothmane@student.1337.>          +#+  +:+       +#+        */
+/*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 11:11:46 by gothmane          #+#    #+#             */
-/*   Updated: 2023/11/12 14:49:58 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/11/16 14:22:34 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PresidentialPardonForm.hpp"
 
 PresidentialPardonForm::PresidentialPardonForm()
-: AForm("Presidential Pardon Form", false, 72, 45) , target("default")
+: AForm("Presidential Pardon Form", false, 25, 5) , target("default")
 {
     std::cout << "Presidential Pardon Created" << std::endl;
 }
 
 PresidentialPardonForm::PresidentialPardonForm(std::string target)
-: AForm("Presidential Pardon Form", false, 72, 45) , target(target)
+: AForm("Presidential Pardon Form", false, 25, 5) , target(target)
 {
     std::cout << "Presidential Pardon Created" << std::endl;
 }
 
-PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm &scf)
- : AForm(scf.getName(), scf.getSign(), scf.getSiGrade(), scf.getExGrade()) , target(scf.target)
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &scf)
+ : AForm(scf.getName(), scf.getSign(), scf.getSiGrade(), scf.getExGrade())
 {
+    *this = scf;
     std::cout << "Presidential Pardon Copied" << std::endl;
 }
 
@@ -35,20 +36,22 @@ PresidentialPardonForm::~PresidentialPardonForm()
     std::cout << "Presidential Pardon Destructed" << std::endl;
 }
 
-void PresidentialPardonForm::execute(Bureaucrat const &e) const
+PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm &f)
 {
-    try
+    if (this != &f)
     {
-      if (!this->getSign())
-        throw besigned_ex;
-        else if (this->getExGrade() > e.getGrade())
-        throw low_ex;
+        this->target = f.target;
     }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-    }
-    
-    std::cout << this->target << " has been pardoned by Zaphod Beeblebrox" << std::endl;
+    return (*this);
+}
+
+void PresidentialPardonForm::execute(Bureaucrat const &e) const
+{ 
+    if (!this->getSign())
+        throw Bureaucrat::BeSignedException();
+    else if (e.getGrade() > this->getExGrade())
+        throw Bureaucrat::GradeTooLowException();
+    else
+        std::cout << this->target << " has been pardoned by Zaphod Beeblebrox" << std::endl;
 }
 

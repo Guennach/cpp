@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   ScalarConverter.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/09 14:33:57 by gothmane          #+#    #+#             */
-/*   Updated: 2023/11/16 14:21:09 by gothmane         ###   ########.fr       */
+/*   Created: 2023/11/15 10:32:41 by gothmane          #+#    #+#             */
+/*   Updated: 2023/11/16 14:20:58 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bureaucrat.hpp"
+#pragma once
 
-int main()
+#include <iostream>
+
+class ScalarConverter
 {
-    try
-    {
-        Bureaucrat b("BEEEEEZ", 1);
-        // b.decrementGrade();
-        b.incrementGrade();
-        // b.incrementGrade();
-        std::cout << b << b;
-    }
-    catch (const std::exception &e)
-    {
-        std::cerr << e.what() << '\n';
-    }
+    private:
+        ScalarConverter();
+        ScalarConverter(ScalarConverter &sc);
+    public:
+        ~ScalarConverter();
+        static ScalarConverter* Init();
+        void Converter(int type, char **av, char *p);
+};
+
+inline ScalarConverter* ScalarConverter::Init()
+{
+    return new ScalarConverter();
 }

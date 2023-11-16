@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gothmane <gothmane@student.1337.>          +#+  +:+       +#+         #
+#    By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/09 14:34:05 by gothmane          #+#    #+#              #
-#    Updated: 2023/11/10 10:56:35 by gothmane         ###   ########.fr        #
+#    Updated: 2023/11/16 14:21:12 by gothmane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ all : $(NAME)
 	$(CC) $(CFLAGS) -o $@ -c $<
 	
 	
-$(NAME) : $(OBJS)
+$(NAME) : $(OBJS) Bureaucrat.hpp
 		$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 
 
