@@ -6,7 +6,7 @@
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:33:57 by gothmane          #+#    #+#             */
-/*   Updated: 2023/11/16 14:21:58 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/11/28 14:56:18 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@
 
 int main()
 {
+
     try
     {
+        // Bureaucrat b("BEEEEEZ", 1000);
         Bureaucrat b("BEEEEEZ", 1);
         // AForm f("form", true, 9, 8);
         ShrubberyCreationForm scf;

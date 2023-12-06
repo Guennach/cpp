@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gothmane <gothmane@student.1337.>          +#+  +:+       +#+        */
+/*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:14:34 by gothmane          #+#    #+#             */
-/*   Updated: 2023/11/15 19:44:27 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/11/17 10:27:58 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void Form::setSign(bool si)
 void Form::beSigned(Bureaucrat const &b)
 {
     if (this->si_grade < b.getGrade())
-        this->sign = false;
+        throw GradeTooLowException();
     else
         this->sign = true;
 }

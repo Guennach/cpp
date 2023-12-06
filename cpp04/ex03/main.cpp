@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gothmane <gothmane@student.1337.>          +#+  +:+       +#+        */
+/*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 11:36:55 by gothmane          #+#    #+#             */
-/*   Updated: 2023/11/08 15:52:06 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/11/26 15:16:32 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,10 @@ int main_2()
     src->learnMateria(tmp); // if you remove the learn materia you gotta delete the tmp as it gonna leak,
 
     tmp = src->createMateria("ice");
-    me->equip(tmp);         // equip the ice materia
-
+    AMateria *a = new Ice();
+    me->equip(a);  
+    me->equip(a);          // equip the ice materia
+    me->equip(new Ice()); 
     src->learnMateria(tmp); // if you remove the learn materia you gotta delete the tmp as it gonna leak,
     ICharacter* bob = new Character("bob"); // init of the character "bob"
     me->use(0, *bob);
@@ -48,6 +50,7 @@ int main_2()
     delete bob;
     delete me;
     delete src;
+    delete a;
     // delete tmp;
     return 0;
 }

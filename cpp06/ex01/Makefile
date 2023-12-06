@@ -6,11 +6,11 @@
 #    By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/15 10:48:10 by gothmane          #+#    #+#              #
-#    Updated: 2023/11/16 15:09:45 by gothmane         ###   ########.fr        #
+#    Updated: 2023/11/23 12:11:41 by gothmane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = Serializer.cpp
+SRCS = Serializer.cpp main.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
@@ -18,7 +18,7 @@ CC = c++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-NAME = convert
+NAME = serializer
 
 all : $(NAME)
 

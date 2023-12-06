@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Character.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gothmane <gothmane@student.1337.>          +#+  +:+       +#+        */
+/*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 10:17:27 by gothmane          #+#    #+#             */
-/*   Updated: 2023/11/08 12:16:49 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/11/26 15:19:17 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ void Character::equip(AMateria *m)
         if (!this->slots[i])
         {
             this->slots[i] = m->clone();
+            
             return ;
         }
     }

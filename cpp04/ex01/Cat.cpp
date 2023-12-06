@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gothmane <gothmane@student.1337.>          +#+  +:+       +#+        */
+/*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 09:59:56 by gothmane          #+#    #+#             */
-/*   Updated: 2023/11/07 16:27:53 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/11/21 11:08:28 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ Cat::Cat(Cat &a)
 {
     this->br = NULL;
     *this = a;
+    std::cout << "COPY IS here" << std::endl;
 }
 
 Cat::~Cat(){

@@ -6,7 +6,7 @@
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:19:27 by gothmane          #+#    #+#             */
-/*   Updated: 2023/11/16 15:09:28 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/11/23 12:18:10 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@ class Serializer
         Serializer();
         Serializer(const Serializer &s);
         Serializer& operator=(const Serializer &a);
-        ~Serializer();
     public:
+        ~Serializer();
+        Data* getData();
+        static Serializer* Init();
         static uintptr_t serialize(Data* ptr);
         static Data* deserialize(uintptr_t raw);
 };

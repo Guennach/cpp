@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gothmane <gothmane@student.1337.>          +#+  +:+       +#+        */
+/*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 11:14:30 by gothmane          #+#    #+#             */
-/*   Updated: 2023/11/16 14:11:29 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/11/17 10:27:09 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,10 @@ class Form
         // setter
         void setSign(bool s);
         void beSigned(Bureaucrat const &b);
+            class GradeTooLowException : public std::exception
+    {
+        virtual const char *what() const throw();
+    } low_ex;
 
 };
 

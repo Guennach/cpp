@@ -6,11 +6,11 @@
 #    By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/16 15:12:51 by gothmane          #+#    #+#              #
-#    Updated: 2023/11/16 15:19:19 by gothmane         ###   ########.fr        #
+#    Updated: 2023/11/21 13:22:10 by gothmane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS =  Base.cpp A.cpp B.cpp C.cpp
+SRCS =  Base.cpp A.cpp B.cpp C.cpp main.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

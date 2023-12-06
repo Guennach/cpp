@@ -6,7 +6,7 @@
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 14:22:57 by gothmane          #+#    #+#             */
-/*   Updated: 2023/11/16 15:22:19 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/11/17 10:23:24 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int AForm::getExGrade() const
 void AForm::beSigned(Bureaucrat const &b)
 {
     if (this->si_grade < b.getGrade())
-        throw Bureaucrat::GradeTooLowException();
+        throw GradeTooLowException();
     else
         this->sign = true;
 }

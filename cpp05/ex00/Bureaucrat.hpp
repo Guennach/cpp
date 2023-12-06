@@ -6,7 +6,7 @@
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:33:54 by gothmane          #+#    #+#             */
-/*   Updated: 2023/11/16 14:21:07 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/11/17 10:18:24 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 class Bureaucrat
 {
 	private:
-		const std::string name; // gotta be const
+		const std::string name;
 		int grade;
 	public:
 		Bureaucrat();

@@ -6,7 +6,7 @@
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:34:08 by gothmane          #+#    #+#             */
-/*   Updated: 2023/11/16 15:24:00 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/11/17 10:23:27 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void Bureaucrat::signForm(AForm &f)
     }
     catch (std::exception &e)
     {
-        std::cout << this->getName() << " couldn't sign " << f.getName() << e.what() << std::endl;
+        std::cout << this->getName() << " couldn't sign " << f.getName() << " because " << e.what() << std::endl;
     }
 }
 
@@ -111,7 +111,6 @@ void Bureaucrat::executeForm(AForm const &form)
     {
         std::cerr << e.what() << '\n';
     }
-    
 }
 
 const char *Bureaucrat::GradeTooHighException::what() const throw()
