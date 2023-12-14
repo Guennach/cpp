@@ -6,7 +6,7 @@
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 11:17:42 by gothmane          #+#    #+#             */
-/*   Updated: 2023/12/11 19:41:03 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/12/14 13:11:38 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include <vector>
 #include <utility>
 
+
+int nbrCmp = 0;
 // std::vector<std::pair<std::vector<int>, std::vector<int>>>
 // split_into_pairs(std::vector<int> nbrs, int size,
 //                  std::vector<std::pair<std::vector<int>, std::vector<int>>> new_pairs)
@@ -75,9 +77,7 @@ std::vector<int> ft_swap_pair(int start, int end, std::vector<int> nbrs, int siz
     std::vector <int> rest;
 
     for (; i < nbrs.size(); i++)
-    {
         rest.push_back(nbrs[i]);
-    }
     // std::cout << start << std::endl;
     // std::cout << end << std::endl;
     // std::cout << "##################" << std::endl;
@@ -86,100 +86,176 @@ std::vector<int> ft_swap_pair(int start, int end, std::vector<int> nbrs, int siz
     // std::cout << nbrs.size() << std::endl;
     // std::cout << "##################" << std::endl;
     // new_vec = nbrs;
-    std::cout << "#####PAIR#####" << std::endl;
-    ft_print(new_vec);
-    std::cout << "#####rest#####" << std::endl;
-    ft_print(rest);
-    std::cout << "#####SIZE PAIR####" << std::endl;
-    std::cout << size_pair << std::endl;
+    // std::cout << "#####PAIR#####" << std::endl;
+    // ft_print(new_vec);
+    // std::cout << "#####rest#####" << std::endl;
+    // ft_print(rest);
+    // std::cout << "#####SIZE PAIR####" << std::endl;
+    // std::cout << size_pair << std::endl;
     return (new_vec);
 }
 
+template<typename T>
+void swap(T &a, T &b) {
+    T tmp = a;
+    a = b;
+    b = tmp;
+}
 
-
-std::vector<int> sort_nd_swap(std::vector<int> nbrs, int size_pair, int size)
+bool cmp(std::vector<int> s1, std::vector<int> s2)
 {
-    std::vector<int> new_pair;
-    std::vector<int> rest;
-    int step = (size_pair / 2);
-    (void)size;
-    new_pair = nbrs;
-    size_t i;
-    for (i = (step - 1); i < new_pair.size() - step; i += step)
+    nbrCmp++;
+    return (s1.back() < s2.back());
+}
+
+void rev_recur(std::vector<int>& nbrs, int size_pair, std::vector<int>& rest_vc)
+{
+    std::vector<std::vector<int> > vicis; 
+    std::vector<std::vector<int> > mChain;
+    std::vector<std::vector<int> > mPend;
+
+    std::cout << "befor: \n";
+    std::cout << size_pair << std::endl;
+    // ft_print(nbrs);
+    for (size_t i = 0; i < nbrs.size();)
     {
-        if (new_pair[i] > new_pair[i + step])
-        {
-            // std::cout << "IN SWAP" << std::endl;
-            new_pair = ft_swap_pair(i, i + step, new_pair, step);
-            // std::cout << "Swapped !" << std::endl;
-        }
-        i += step;
+        std::vector<int> tmp; 
+        for (size_t j = 0; j < (size_t)(size_pair / 2); j++)
+            tmp.push_back(nbrs[i + j]);
+        i += (size_pair / 2);
+        vicis.push_back(tmp);
     }
- 
-    // std::vector<int> neuve;
-    // if (i != new_pair.size())
+
+    // for (size_t i = 0; i < vicis.size();i++)
     // {
-    //     for (; i < new_pair.size(); i++)
-    //     {
-    //         rest.push_back(new_pair[i]);
-    //     }
-    //     std::cout << "#####REST#####" << std::endl;
-    //     ft_print(rest);
-        
-    //     for (size_t i = 0; i < (new_pair.size() - step); i++)
-    //     {
-    //         neuve.push_back(new_pair[i]);
-    //     }
-    //     // std::cout << new_pair.size() - step << std::endl;
-    //     // ft_print(rest);
-    //     std::cout << size_pair << std::endl;
-    //     new_pair = neuve;
+    //     std::cout << "value: " << std::endl;
+    //     for (size_t j = 0; j < vicis[i].size(); j++)
+    //         std::cout << vicis[i][j] << " ";
+    //     std::cout << std::endl;
     // }
 
-    // std::cout << "I = " << i << " Size = " << new_pair.size() << std::endl;
-    // std::cout << "NBR OF PAIRS = " << i % 2 << std::endl;
- 
+
+    //create mainChain AND Pend
+    for (size_t i = 0; i < vicis.size();i++)
+    {
+        if (i < 2 || i % 2 != 0)
+            mChain.push_back(vicis[i]);
+        else if (i % 2 == 0)
+            mPend.push_back(vicis[i]);
+    }
+    if (rest_vc.size())
+        mPend.push_back(rest_vc);
+
+    // std::cout << "---------------------\n";
+    // std::cout << "mChain: \n";
+    // for (size_t i = 0; i < mChain.size();i++)
+    // {
+    //     std::cout << "value: " << std::endl;
+    //     for (size_t j = 0; j < mChain[i].size(); j++)
+    //         std::cout << mChain[i][j] << " ";
+    //     std::cout << std::endl;
+    // }
+    
+    // std::cout << "---------------------\n";
+    // std::cout << "mPend: \n";
+    // for (size_t i = 0; i < mPend.size();i++)
+    // {
+    //     std::cout << "value: " << std::endl;
+    //     for (size_t j = 0; j < mPend[i].size(); j++)
+    //         std::cout << mPend[i][j] << " ";
+    //     std::cout << std::endl;
+    // }
+    // std::cout << "---------------------\n";
+
+    //insert pend to main chain
+    for (size_t i = 0; i < mPend.size(); i++)
+    {
+        std::vector<std::vector<int> >::iterator it;
+        it = std::lower_bound(mChain.begin(), mChain.end(), mPend[i], cmp);
+        mChain.insert(it, mPend[i]);
+    }
+    // std::cout <<"Karim " << size_pair / 2 << std::endl;
+    nbrs.clear();
+    for (size_t i = 0; i < mChain.size(); i++)
+    {
+        for (size_t j = 0; j < mChain[i].size(); j++)
+            nbrs.push_back(mChain[i][j]);
+    }
+    // std::cout << "after: \n";
+    // ft_print(nbrs);
+}
+
+std::vector<int> sort_nd_swap(std::vector<int>& nbrs, int size_pair, int size, std::vector<int>& rest_vici)
+{
+    std::vector <int> new_pair;
+    std::vector<std::pair<std::vector<int>, std::vector<int> > > vici;
+    std::vector<int> left_vici;
+    std::vector<int> right_vici;
+    int step = (size_pair / 2);
+    int tracker = 0;
+    int rest = nbrs.size() % size_pair;
+    (void) size;
+    for (size_t i = 0; i < nbrs.size() - rest;)
+    {
+        int clone_step = 0;
+        left_vici.clear();
+        right_vici.clear();
+        for (; clone_step < step; clone_step++)
+            left_vici.push_back(nbrs[i++]);
+        clone_step = 0;
+        for (; clone_step < step; clone_step++)
+            right_vici.push_back(nbrs[i++]);
+        nbrCmp++;
+        if (left_vici.back() > right_vici.back())
+            swap(right_vici, left_vici);
+        vici.push_back(std::make_pair(left_vici, right_vici));
+        tracker++;
+    }
+
+    size_t j_a = 0;
+    int i_b = 0;
+
+    while (j_a < vici.size())
+    {
+        i_b = 0;
+        for (; i_b < step;)
+            new_pair.push_back(vici[j_a].first[i_b++]);
+        i_b = 0;
+        for (; i_b < step;)
+            new_pair.push_back(vici[j_a].second[i_b++]);
+        j_a++;
+    }
+    for (size_t i = nbrs.size() - rest; i < nbrs.size(); i++)
+        rest_vici.push_back(nbrs[i]);
+    std::cout << std::endl;
+    std::cout << "############################################" << std::endl;
+    std::cout<< "########PAIRS###########" << std::endl;
+    ft_print(new_pair);
+    std::cout << std::endl;
+    std::cout<< "########REST###########" << std::endl;
+    ft_print(rest_vici);
+    std::cout << "############################################" << std::endl;
+    std::cout << "START = " << size_pair << std::endl;
     return (new_pair);
 }
 
-// int ft_match_pair(std::vector<int> nbrs, int size_pair)
-// {
-//     for (size_t i = 0; i < nbrs.size(); i++);
-// }
 
-void merge_nd_sort_algo(std::vector<int> nbrs, int size_pair, int size)
+
+void merge_nd_sort_algo(std::vector<int>& nbrs, int size_pair, int size)
 {
     std::vector<int> rest;
 
-    nbrs = sort_nd_swap(nbrs, size_pair, size);
+    nbrs = sort_nd_swap(nbrs, size_pair, size, rest);
     size_pair *= 2;
+    std::cout << "nbrCmp: " << nbrCmp << std::endl;
     if ((nbrs.size() / size_pair) != 0)
-        merge_nd_sort_algo(nbrs, size_pair, size);
-}
-
-void swap_nd_sort(std::vector<std::pair<int, int>> &pr, int n)
-{
-    if (n == 1)
-        return;
-
-    for (int i = 0; i < n - 1; ++i)
     {
-        if (pr[i].second > pr[i + 1].second)
-        {
-            std::pair<int, int> temp = pr[i];
-            pr[i] = pr[i + 1];
-            pr[i + 1] = temp;
-        }
+        merge_nd_sort_algo(nbrs, size_pair, size);
     }
-
-    swap_nd_sort(pr, n - 1);
+    std::cout << size_pair << std::endl;
+    rev_recur(nbrs, size_pair / 2, rest);
 }
 
-std::vector<std::pair<int, int>> ft_sort_pairs(std::vector<std::pair<int, int>> pr)
-{
-    swap_nd_sort(pr, pr.size());
-    return pr;
-}
 
 int main(int ac, char **av)
 {
@@ -195,99 +271,11 @@ int main(int ac, char **av)
         for (size_t i = 0; i < nbrs.size(); i++)
             std::cout << nbrs[i] << " ";
         std::cout << std::endl;
-
-        std::vector<std::pair<int, int>> pairs;
-        std::vector<int> nbr_vv;
         size_t size = 2;
 
         merge_nd_sort_algo(nbrs, size, 0);
-        // ft_print(nbr_vv);
-        // if (size == 2)
-        // {
-
-        // for (size_t i = 0; i < nbrs.size() - 1; i += 2)
-        // {
-        //     std::pair<int, int> pair;
-        //     if (nbrs[i] < nbrs[i + 1])
-        //     {
-        //         pair.first = nbrs[i];
-        //         pair.second = nbrs[i + 1];
-        //     }
-        //     else
-        //     {
-        //         pair.first = nbrs[i + 1];
-        //         pair.second = nbrs[i];
-        //     }
-        //     pairs.push_back(pair);
-        // }
-        // }
-        // pairs = ft_sort_pairs(pairs);
-        // std::cout << "##### Sorted Chain of Pairs ####" << std::endl;
-        // for (const auto &pair : pairs)
-        // {
-        //     std::cout << "( " << pair.first << " , " << pair.second << " ) ";
-        // }
-        // std::cout << std::endl;
-        // std::vector<int> main_chain;
-        // std::vector<int> pend;
-
-        // for (size_t i = 0; i < pairs.size(); i++)
-        // {
-        //     if (i == 0)
-        //     {
-        //         main_chain.push_back(pairs[i].first);
-        //         main_chain.push_back(pairs[i].second);
-        //     }
-        //     else
-        //     {
-        //         if (pairs[i].first > pairs[i].second)
-        //         {
-        //             main_chain.push_back(pairs[i].first);
-        //             pend.push_back(pairs[i].second);
-        //         }
-        //         else
-        //         {
-        //             main_chain.push_back(pairs[i].second);
-        //             pend.push_back(pairs[i].first);
-        //         }
-        //     }
-        // }
-        // std::cout << "#### Main Chain ####" << std::endl;
-        // for (size_t i = 0; i < main_chain.size(); i++)
-        // {
-        //     std::cout << main_chain[i] << " ";
-        // }
-        // std::cout << std::endl;
-        // std::cout << "#### Pend Chain ####" << std::endl;
-        // for (size_t i = 0; i < pend.size(); i++)
-        // {
-        //     std::cout << pend[i] << " ";
-        // }
-        // std::cout << std::endl;
-        // while ((size) <= nbrs.size())
-        // {
-        //     if (size == 2)
-        //     {
-        //         for (size_t i = 0; i < nbrs.size() - 1; i += 2)
-        //         {
-        //             std::pair<int, int> pair;
-        //             if (nbrs[i] < nbrs[i + 1])
-        //             {
-        //                 pair.first = nbrs[i];
-        //                 pair.second = nbrs[i + 1];
-        //             }
-        //             else
-        //             {
-        //                 pair.first = nbrs[i];
-        //                 pair.second = nbrs[i + 1];
-        //             }
-        //             pairs.push_back(pair);
-        //         }
-        //     }
-        //     // pairs = split_into_pairs(nbrs, size, pairs);
-        //     size *= 2;
-        // }
-        i = 0;
+        ft_print(nbrs);
+        std::cout << "nbrCmp: " << nbrCmp << std::endl;
     }
     return (0);
 }
