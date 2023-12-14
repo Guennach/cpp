@@ -6,7 +6,7 @@
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:34:08 by gothmane          #+#    #+#             */
-/*   Updated: 2023/11/16 14:21:05 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/12/08 11:17:33 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &b)
     return (*this);
 }
 
-std::ostream &operator<<(std::ostream &os, const Bureaucrat &b)
+std::ostream &operator<<(std::ostream &os, const Bureaucrat &b) 
 {
     os << b.getName() << ", bureaucrat grade " << b.getGrade() << std::endl;
     return (os);

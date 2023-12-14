@@ -6,7 +6,7 @@
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 11:17:42 by gothmane          #+#    #+#             */
-/*   Updated: 2023/12/14 13:11:38 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/12/14 20:08:10 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,42 +58,7 @@ void ft_print(std::vector<int> vr)
         std::cout << vr[i] << " ";
     std::cout << std::endl;
 }
-std::vector<int> ft_swap_pair(int start, int end, std::vector<int> nbrs, int size_pair)
-{
-    std::vector<int> new_vec;
 
-    for (int i = 0; i <= start - size_pair; i++)
-        new_vec.push_back(nbrs[i]);
-    for (int i = start + 1; i <= end; i++)
-        new_vec.push_back(nbrs[i]);
-    for (int i = (start - size_pair) + 1; i <= start; i++)
-        new_vec.push_back(nbrs[i]);
-    size_t i = end + 1;
-    for (; i < nbrs.size() - size_pair; i++)
-    {
-        new_vec.push_back(nbrs[i]);
-        // std::cout << "hna kanhet rest = " << nbrs[i] << std::endl;
-    }
-    std::vector <int> rest;
-
-    for (; i < nbrs.size(); i++)
-        rest.push_back(nbrs[i]);
-    // std::cout << start << std::endl;
-    // std::cout << end << std::endl;
-    // std::cout << "##################" << std::endl;
-    // std::cout << size_pair << std::endl;
-    // std::cout << end + 1 << std::endl;
-    // std::cout << nbrs.size() << std::endl;
-    // std::cout << "##################" << std::endl;
-    // new_vec = nbrs;
-    // std::cout << "#####PAIR#####" << std::endl;
-    // ft_print(new_vec);
-    // std::cout << "#####rest#####" << std::endl;
-    // ft_print(rest);
-    // std::cout << "#####SIZE PAIR####" << std::endl;
-    // std::cout << size_pair << std::endl;
-    return (new_vec);
-}
 
 template<typename T>
 void swap(T &a, T &b) {
@@ -136,6 +101,7 @@ void rev_recur(std::vector<int>& nbrs, int size_pair, std::vector<int>& rest_vc)
 
 
     //create mainChain AND Pend
+    // std::vector<
     for (size_t i = 0; i < vicis.size();i++)
     {
         if (i < 2 || i % 2 != 0)
@@ -146,35 +112,44 @@ void rev_recur(std::vector<int>& nbrs, int size_pair, std::vector<int>& rest_vc)
     if (rest_vc.size())
         mPend.push_back(rest_vc);
 
-    // std::cout << "---------------------\n";
-    // std::cout << "mChain: \n";
-    // for (size_t i = 0; i < mChain.size();i++)
-    // {
-    //     std::cout << "value: " << std::endl;
-    //     for (size_t j = 0; j < mChain[i].size(); j++)
-    //         std::cout << mChain[i][j] << " ";
-    //     std::cout << std::endl;
-    // }
+    std::cout << "---------------------\n";
+    std::cout << "mChain: \n";
+    for (size_t i = 0; i < mChain.size();i++)
+    {
+        std::cout << "value: " << std::endl;
+        for (size_t j = 0; j < mChain[i].size(); j++)
+            std::cout << mChain[i][j] << " ";
+        std::cout << std::endl;
+    }
     
-    // std::cout << "---------------------\n";
-    // std::cout << "mPend: \n";
-    // for (size_t i = 0; i < mPend.size();i++)
-    // {
-    //     std::cout << "value: " << std::endl;
-    //     for (size_t j = 0; j < mPend[i].size(); j++)
-    //         std::cout << mPend[i][j] << " ";
-    //     std::cout << std::endl;
-    // }
-    // std::cout << "---------------------\n";
+    std::cout << "---------------------\n";
+    std::cout << "mPend: \n";
+    for (size_t i = 0; i < mPend.size();i++)
+    {
+        std::cout << "value: " << std::endl;
+        for (size_t j = 0; j < mPend[i].size(); j++)
+            std::cout << mPend[i][j] << " ";
+        std::cout << std::endl;
+    }
+    std::cout << "---------------------\n";
 
+    unsigned int arr[] = {2, 2, 6, 10, 22, 42, 86, 170, 342, 682, 1366, 2730, 5462, 10922, 21846, 43690, 87380, 174762, 349524, 699050, 1398102, 2796202, 5592406, 11184810, 22369620, 44739242, 89478484, 178956970, 357913940, 715827882};
     //insert pend to main chain
+    int sum = 0, push = 1, a = 0;
+    int s = 0;
     for (size_t i = 0; i < mPend.size(); i++)
     {
+        sum += arr[i];
+        s = sum + push;
         std::vector<std::vector<int> >::iterator it;
-        it = std::lower_bound(mChain.begin(), mChain.end(), mPend[i], cmp);
+        if (s >= (int)mChain.size())
+            s = mChain.size();
+        it = std::lower_bound(mChain.begin(), mChain.begin() + s, mPend[i], cmp);
         mChain.insert(it, mPend[i]);
+        push++;
+        // a++;
     }
-    // std::cout <<"Karim " << size_pair / 2 << std::endl;
+    // size_t i = 0;
     nbrs.clear();
     for (size_t i = 0; i < mChain.size(); i++)
     {

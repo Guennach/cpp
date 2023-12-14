@@ -6,7 +6,7 @@
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 12:13:59 by gothmane          #+#    #+#             */
-/*   Updated: 2023/11/28 12:45:05 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/12/10 22:09:59 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ private:
 public:
     Array()
     {
-        this->d = NULL;
+        this->d = new T();
         this->s = 0;
     };
     ~Array()
