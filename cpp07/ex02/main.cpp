@@ -6,18 +6,12 @@
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 12:59:57 by gothmane          #+#    #+#             */
-/*   Updated: 2023/11/28 14:22:41 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/12/18 17:10:20 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "Array.hpp"
-
-
-int main ()
-{
-    
-}
 
 #define MAX_VAL 750
 int main(int, char**)
@@ -47,7 +41,7 @@ int main(int, char**)
     }
     try
     {
-        numbers[-2] = 0;
+        numbers[-2021211545] = 0;
     }
     catch(const std::exception& e)
     {

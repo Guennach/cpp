@@ -6,13 +6,14 @@
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 12:13:59 by gothmane          #+#    #+#             */
-/*   Updated: 2023/12/10 22:09:59 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/12/18 17:26:22 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include <iostream>
+#include "exception"
 
 template <typename T>
 class Array
@@ -22,6 +23,14 @@ private:
     unsigned int s; // Size
 
 public:
+	class OutOfBound : public std::exception
+	{
+		virtual const char *what() const throw()
+        {
+            return "\033[1;31mOut of Bound !\033[0m";
+        };
+	} OutOfBound;
+    
     Array()
     {
         this->d = new T();
@@ -61,8 +70,8 @@ public:
     };
     T &operator[](unsigned int i)
     {
-        if (i >= s)
-            throw std::exception(); // Index out of bounds (Access smtg out of size)
+        if (i < 0 || i >= s)
+            throw OutOfBound; // Index out of bounds (Access smtg out of size)
         return d[i];
     }
 };
