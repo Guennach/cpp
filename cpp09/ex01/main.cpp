@@ -6,7 +6,7 @@
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:19:53 by gothmane          #+#    #+#             */
-/*   Updated: 2023/12/22 12:53:37 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/12/22 13:12:49 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,24 +28,6 @@ int ft_ifnbr(char *av)
         }
     }
     return (1);
-}
-
-std::string perfom_logic(std::stack<std::string> tks, int idx)
-{
-    double result = 0;
-    double sec_op = std::strtod(tks.top().c_str(), NULL);
-    tks.pop();
-    double first_op = std::strtod(tks.top().c_str(), NULL);
-    tks.pop();
-    if (idx == 0)
-        result = sec_op + first_op;
-    else if (idx == 1)
-        result = sec_op - first_op;
-    else if (idx == 2)
-        result = sec_op * first_op;
-    else if (idx == 3)
-        result = sec_op / first_op;
-    return (std::to_string(result));
 }
 
 int main(int ac, char **av)
