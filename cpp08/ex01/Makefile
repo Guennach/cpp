@@ -6,7 +6,7 @@
 #    By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/26 15:29:20 by gothmane          #+#    #+#              #
-#    Updated: 2023/11/26 15:30:27 by gothmane         ###   ########.fr        #
+#    Updated: 2023/12/21 12:29:30 by gothmane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ CC = c++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-NAME = Bro
+NAME = span
 
 all : $(NAME)
 

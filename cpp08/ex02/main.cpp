@@ -6,7 +6,7 @@
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 11:34:38 by gothmane          #+#    #+#             */
-/*   Updated: 2023/11/28 11:59:30 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/12/22 11:03:50 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int main()
 {
-    MutantStack<int> mstack;
+    MutantStack<int, std::deque<int> > mstack;
     mstack.push(5);
     mstack.push(17);
     std::cout << mstack.top() << std::endl;
@@ -35,5 +35,27 @@ int main()
         ++it;
     }
     std::stack<int> s(mstack);
+    
+    //Create another Stack
+    MutantStack<std::string> rstack;
+
+    //Push into stack
+    rstack.push("mosyo telha");
+    rstack.push("waaaaa");
+    rstack.push("telha");
+    rstack.push("ostora tel7a");
+    rstack.push("tel7a nihaya");
+
+    //Init iterators
+    MutantStack<std::string>::iterator its = rstack.begin(); // get begin
+    MutantStack<std::string>::iterator tail = rstack.end(); //  get end
+
+    --tail; // dec as tail returns an iterator pointing one past the last element.
+    
+    //print begin and end
+    std::cout << "############################" << std::endl;
+    std::cout << *its << std::endl;
+    std::cout << *tail << std::endl;
+    std::cout << "############################" << std::endl;
     return 0;
 }

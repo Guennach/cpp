@@ -6,7 +6,7 @@
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 15:29:16 by gothmane          #+#    #+#             */
-/*   Updated: 2023/11/27 15:02:36 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/12/21 14:23:12 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 #include "Span.hpp"
 
-Span::Span() : N(0) , vr(0)
+Span::Span() : N(0) , counter(0) 
 {
 }
 
-Span::Span(unsigned int n) : N(n) 
+Span::Span(unsigned int n) : N(n) , counter(0) 
 {   
 }
 
-Span::Span(const Span &sp): N(sp.N) 
+Span::Span(const Span &sp): N(sp.N) ,  counter(sp.counter) , vr(sp.vr) 
 {
 }
 
@@ -34,15 +34,27 @@ Span& Span::operator=(const Span &sp)
     {
         this->N = sp.N;
         this->vr = sp.vr;
+        this->counter = sp.counter;
     }
     return (*this);
 }
 
+void Span::addSeqNbr(std::vector<int>::iterator begin, std::vector<int>::iterator end)
+{
+    while (begin < end)
+    {
+        addNumber(*begin);
+        std::cout << "Counter = " << counter << std::endl;
+        begin++;
+    }
+}
+
 void Span::addNumber(int nbr)
 {
+    if (this->counter >= this->N)
+        throw std::runtime_error("You can't add more than those elements");
     vr.push_back(nbr);
-    std::cout << "Size : " ;
-    std::cout << vr.size() << std::endl;
+    this->counter++;
 }
 
 int Span::shortestSpan()
@@ -59,7 +71,7 @@ int Span::shortestSpan()
         }
         return (d);
     }
-    return (-1);
+    throw std::runtime_error("\033[1;31mSize is less than two\033[0m");
 }
 
 int Span::longestSpan()
@@ -76,5 +88,5 @@ int Span::longestSpan()
         }
         return (max_nbr);
     }
-    return (-1);
+    throw std::runtime_error("\033[1;31mSize is less than two\033[0m");
 }

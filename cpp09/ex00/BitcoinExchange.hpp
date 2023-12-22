@@ -6,7 +6,7 @@
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 12:49:15 by gothmane          #+#    #+#             */
-/*   Updated: 2023/12/05 10:47:41 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/12/22 12:21:33 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,20 @@
 #include <map>
 #include <fstream>
 
+
+
 class BitcoinExchange
 {
     private:
        std::map< std::string,  std::string > data;
-       std::map<int, std::pair <std::string,  std::string>> input;
+       std::map<int, std::pair <std::string,  std::string> > input;
     public:
         BitcoinExchange();
         BitcoinExchange(const BitcoinExchange &be);
         BitcoinExchange& operator=(const BitcoinExchange &be);
         ~BitcoinExchange();
-        std::map<int, std::pair <std::string,  std::string>> getInput();
+        std::map<int, std::pair <std::string,  std::string> > getInput();
         std::map<std::string, std::string> getData();
-        
         void        ft_fillmap(std::string nameFile);
         std::pair<std::string, int>   ft_split(std::string line);
         int ft_checkDate_nd_Value(std::string date);

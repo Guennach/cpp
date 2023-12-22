@@ -6,7 +6,7 @@
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:19:53 by gothmane          #+#    #+#             */
-/*   Updated: 2023/12/05 18:48:33 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/12/22 12:53:37 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ int ft_ifnbr(char *av)
 
     for (; i < std::string(av).size(); i++)
     {
-        if ((av[i] < '0' || av[i] > '9') 
-        && av[i] != '+' && av[i] != '-' && av[i] != '*' && av[i] != '/' && av[i] != '\t' && av[i] != 32)
+        if ((av[i] < '0' || av[i] > '9') && av[i] != '+' && av[i] != '-' && av[i] != '*' && av[i] != '/' && av[i] != '\t' && av[i] != 32)
         {
             if (av[i] == 13)
                 std::cout << "[" << av[1] << "]" << std::endl;
@@ -49,7 +48,6 @@ std::string perfom_logic(std::stack<std::string> tks, int idx)
     return (std::to_string(result));
 }
 
-
 int main(int ac, char **av)
 {
     if (ac > 1)
@@ -64,17 +62,31 @@ int main(int ac, char **av)
         {
             if (!token.empty())
             {
-                if (ft_ifnbr(av[1]) == -1)  
+                if (ft_ifnbr(av[1]) == -1)
                 {
-                    std::cout << "Error" << std::endl;
+                    std::cout << "Error: Not a number !" << std::endl;
                     return (1);
                 }
                 if (token == "*")
                 {
                     if (!tks.empty())
                     {
+                        if (tks.empty())
+                        {
+                            std::cerr << "\033[1;31m "
+                                      << "Error: Can't perform anyhing in without first and second nbr !"
+                                      << "\033[0m" << std::endl;
+                            exit(1);
+                        }
                         double sec_op = std::strtod(tks.top().c_str(), NULL);
                         tks.pop();
+                        if (tks.empty())
+                        {
+                            std::cerr << "\033[1;31m "
+                                      << "Error: Can't perform anyhing in without first and second nbr !"
+                                      << "\033[0m" << std::endl;
+                            exit(1);
+                        }
                         double first_op = std::strtod(tks.top().c_str(), NULL);
                         tks.pop();
                         double result = sec_op * first_op;
@@ -87,8 +99,22 @@ int main(int ac, char **av)
                 {
                     if (!tks.empty())
                     {
+                        if (tks.empty())
+                        {
+                            std::cerr << "\033[1;31m "
+                                      << "Error: Can't perform anyhing in without first and second nbr !"
+                                      << "\033[0m" << std::endl;
+                            exit(1);
+                        }
                         double sec_op = std::strtod(tks.top().c_str(), NULL);
                         tks.pop();
+                        if (tks.empty())
+                        {
+                            std::cerr << "\033[1;31m "
+                                      << "Error: Can't perform anyhing in without first and second nbr !"
+                                      << "\033[0m" << std::endl;
+                            exit(1);
+                        }
                         double first_op = std::strtod(tks.top().c_str(), NULL);
                         tks.pop();
                         double result = first_op - sec_op;
@@ -101,8 +127,22 @@ int main(int ac, char **av)
                 {
                     if (!tks.empty())
                     {
+                        if (tks.empty())
+                        {
+                            std::cerr << "\033[1;31m "
+                                      << "Error: Can't perform anyhing in without first and second nbr !"
+                                      << "\033[0m" << std::endl;
+                            exit(1);
+                        }
                         double sec_op = std::strtod(tks.top().c_str(), NULL);
                         tks.pop();
+                        if (tks.empty())
+                        {
+                            std::cerr << "\033[1;31m "
+                                      << "Error: Can't perform anyhing in without first and second nbr !"
+                                      << "\033[0m" << std::endl;
+                            exit(1);
+                        }
                         double first_op = std::strtod(tks.top().c_str(), NULL);
                         tks.pop();
                         double result = sec_op + first_op;
@@ -111,12 +151,26 @@ int main(int ac, char **av)
                     }
                     continue;
                 }
-                 else if (token == "/")
+                else if (token == "/")
                 {
                     if (!tks.empty())
                     {
+                        if (tks.empty())
+                        {
+                            std::cerr << "\033[1;31m "
+                                      << "Error: Can't perform anyhing in without first and second nbr !"
+                                      << "\033[0m" << std::endl;
+                            exit(1);
+                        }
                         double sec_op = std::strtod(tks.top().c_str(), NULL);
                         tks.pop();
+                        if (tks.empty())
+                        {
+                            std::cerr << "\033[1;31m "
+                                      << "Error: Can't perform anyhing in without first and second nbr !"
+                                      << "\033[0m" << std::endl;
+                            exit(1);
+                        }
                         double first_op = std::strtod(tks.top().c_str(), NULL);
                         tks.pop();
                         double result = sec_op / first_op;
@@ -131,9 +185,11 @@ int main(int ac, char **av)
 
         std::stack<std::string> tempStack = tks;
 
-        while (!tempStack.empty())
+        if (tempStack.empty() || tempStack.size() > 1)
+            std::cerr << "\033[1;31m " << "Error: Invalid Format" << "\033[0m" << std::endl;
+        while (!tempStack.empty() && tempStack.size() == 1)
         {
-            std::cout << std::atoi(std::string(tempStack.top()).c_str()) << std::endl;
+            std::cout << "\033[1;32m " << std::atoi(std::string(tempStack.top()).c_str()) << "\033[0m" << std::endl;
             tempStack.pop();
         }
     }

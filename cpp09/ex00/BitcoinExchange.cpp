@@ -6,7 +6,7 @@
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 12:49:16 by gothmane          #+#    #+#             */
-/*   Updated: 2023/12/05 15:57:13 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/12/22 12:21:20 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include <vector>
 #include <sstream>
 #include <ctime>
+
+
 
 BitcoinExchange::BitcoinExchange() {}
 
@@ -31,7 +33,7 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &be)
     return (*this);
 }
 
-std::map<int, std::pair<std::string, std::string>> BitcoinExchange::getInput()
+std::map<int, std::pair<std::string, std::string> > BitcoinExchange::getInput()
 {
     return (this->input);
 }
@@ -51,12 +53,58 @@ std::pair<std::string, int> BitcoinExchange::ft_split(std::string line)
     return mp;
 }
 
+bool ft_check_date_digits(std::string date)
+{
+    size_t i = 0;
+    int year = 0 , month = 0 , day = 0;
+    int spliter = 0;
+    char ys[4];
+    char ms[4];
+    char ds[4];
+
+    for(; i < date.size(); i++)
+    {
+        if (i > 0 && date[i] == '-')
+            spliter++;
+        else if (spliter == 0)
+        {
+            ys[year] = date[i];
+            year++;
+            ys[year] = 0;
+        }
+        else if (spliter == 1)
+        {
+            ms[month] = date[i];
+            month++;
+            ms[month] = 0;
+        }
+        else if (spliter == 2)
+        {
+            ds[day] = date[i];
+            day++;
+            ds[day] = 0;
+        }
+    }
+    if (spliter == 2 && year == 4 && month == 2 && day == 2)
+    {
+        if ((std::string(ms) == "00" || std::string(ds) == "00") 
+            || (std::string(ms) == "0" || std::string(ds) == "0") )
+            return (false);
+        return (true);
+    }
+    return (false);
+}
+
 bool isDateFormatValid(const std::string &date)
 {
-    std::istringstream iss(date);
-    std::tm tm = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL};
-    iss >> std::get_time(&tm, "%Y-%m-%d");
-    return !iss.fail();
+    struct tm tm;
+
+    char *checker = strptime(date.c_str(), "%Y-%m-%d", &tm);
+    if (checker == NULL)
+        return (false);
+    if (ft_check_date_digits(date) == true)
+        return (true);
+    return (false);
 }
 
 int BitcoinExchange::ft_checkDate_nd_Value(std::string date)
@@ -82,11 +130,6 @@ void BitcoinExchange::ft_fillmap(std::string nameFile)
                 std::string date = line;
                 date = date.substr(0, date.find(","));
                 std::string it = line.substr((line.find(",") + 1), line.size());
-                // if (ft_checkDate_nd_Value(date) == 0)
-                // {
-                //     // std::cout << "Key: " << i << ", Value: BREAKED (" << date << ", " << it << ")" << std::endl;
-                //     break;
-                // }
                 std::pair<std::string, std::string> pr = std::make_pair(date, it);
                 data.insert(pr);
             }
@@ -101,15 +144,30 @@ std::string findClosestLowerDate(const std::map<std::string, std::string> &dates
     std::map<std::string, std::string>::const_iterator it = dates.lower_bound(targetDate);
 
     if (it == dates.begin())
-    {
-        // targetDate is smaller than all dates in the map
         return "";
+    return (--it)->first; 
+}
+
+size_t ft_isNumber(std::string nbr)
+{
+    size_t size = 0;
+    int point = 0;
+    for (size_t i = 0; i < nbr.size(); i++)
+    {
+        if (i == 0 && (nbr[0] == '-' || nbr [0] == '+'))
+            size++;
+        else if (nbr[i] == '.' && (nbr[i - 1] >= '0' &&  nbr[i - 1] <= '9') 
+            && (nbr[i + 1] && nbr[i + 1] >= '0' &&  nbr[i + 1] <= '9'))
+        {
+            point++;
+            size++;
+        }
+        else if ((nbr[i] >= '0' &&  nbr[i] <= '9') || (nbr[i] == ' ' || nbr[i] == '\t'))
+            size++;
     }
-
-    // Decrement the iterator to get the closest lower date
-    --it;
-
-    return it->first; // Return the date from the pair
+    if (size == nbr.size() && point <= 1)
+        return (1);
+    return (2);
 }
 
 void BitcoinExchange::ft_fillmap_input(std::string nameFile)
@@ -129,55 +187,50 @@ void BitcoinExchange::ft_fillmap_input(std::string nameFile)
                 {
                     date = date.substr(0, date.find("|") - 1);
                     std::string it = line.substr((line.find("|") + 2), line.size());
-                    // std::string nbr = it;
-                    if (!isDateFormatValid(date))
-                    {
-                        it = "DATE_ERROR";
-                        std::cout << "date error" << std::endl;
-                    }
+
+                    if (ft_isNumber(it) == 2)
+                        std::cerr << "\033[1;31mError: [" << it << "] is not a Number.\033[0m\n" ;
+                    else if (!isDateFormatValid(date))
+                        std::cerr << "\033[1;31mError: date format not valid.\033[0m" << std::endl;
                     else if (std::strtod(it.c_str(), NULL) > 1000)
-                    {
-                        it = "MAX_INT";
-                        std::cout << "Error: too large a number." << std::endl;
-                    }
+                        std::cerr << "\033[1;31mError: too large a number.\033[0m" << std::endl;
                     else if (std::strtod(it.c_str(), NULL) < 0)
-                    {
-                        it = "MIN_INT";
-                        std::cout << "Error: not a positive number." << std::endl;
-                    }
+                        std::cerr << "\033[1;31mError: not a positive number.\033[0m" << std::endl;
                     else
                     {
-                        // std::cout << date << std::endl;
-                        auto it = data.begin();
+                        std::map< std::string,  std::string >::iterator it = data.begin();
                         int check = 0;
                         while (it != data.end())
                         {
                             if (it->first == date)
                             {
-                                std::cout << it->first << " => " <<  line.substr((line.find("|") + 2), line.size()) << 
-                                    " = " << std::strtod(it->second.c_str(), NULL) * std::strtod(line.substr((line.find("|") + 2), line.size()).c_str(), NULL)  << std::endl;
+                                std::cout <<  "\033[1;35m" << it->first << "\033[0m" << " => " <<  line.substr((line.find("|") + 2), line.size()) << 
+                                   " = \033[1;32m" << std::strtod(it->second.c_str(), NULL) * std::strtod(line.substr((line.find("|") + 2), line.size()).c_str(), NULL) << "\033[0m" << std::endl;
                                 check = 1;
                             }
                             ++it;
                         }
                         if (check == 0)
                         {
-                            auto it = data.begin();
+                            std::map< std::string,  std::string >::iterator it = data.begin();
                             while (it != data.end())
                             {
                                 if (it->first == findClosestLowerDate(data, date))
-                                    std::cout << it->first << " => " << line.substr((line.find("|") + 2), line.size())  << 
-                                        " = " << std::strtod(it->second.c_str(), NULL) * std::strtod(line.substr((line.find("|") + 2), line.size()).c_str(), NULL)  << std::endl;
+                                    std::cout <<  "\033[1;34m" << it->first << "\033[0m" << " => " << line.substr((line.find("|") + 2), line.size())  << 
+                                        " = \033[1;32m" << std::strtod(it->second.c_str(), NULL) * std::strtod(line.substr((line.find("|") + 2), line.size()).c_str(), NULL) << "\033[0m" << std::endl;
                                 ++it;
                             }
                         }
                     }
-                    std::pair<int, std::pair<std::string, std::string>> pr = std::make_pair(i, std::make_pair(date, it));
+                    std::pair<int, std::pair<std::string, std::string> > pr = std::make_pair(i, std::make_pair(date, it));
                     input.insert(pr);
                 }
                 else
                 {
-                    std::cout << "Error: bad input => " << date << std::endl;
+                    if (line == "\0")
+                        std::cerr << "\033[1;31mError: don't insert any empty line\033[0m\n";
+                    else
+                        std::cerr << "\033[1;31mError: bad input => " << date << "\033[0m" << std::endl;
                 }
             }
             i++;

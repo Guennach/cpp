@@ -303,7 +303,13 @@ void merge_nd_sort_algo_deq(std::deque<int> &nbrs, int size_pair, int size)
 int main(int ac, char **av)
 {
     if (ac > 1)
-    {
+    {   
+    std::cout << "\033[1;35m" << "  __        __   _  \n"
+                 "  \\ \\      / /__| | ___ ___  _ __ ___   ___ \n"
+                 "   \\ \\ /\\ / / _ \\ |/ __/ _ \\| '_ ` _ \\ / _ \\\n"
+                 "    \\ V  V /  __/ | (_| (_) | | | | | |  __/ \n"
+                 "     \\_/\\_/ \\___|_|\\___\\___/|_| |_| |_|\\___| \n" << "\033[0m";
+
         struct timeval tp;
         struct timeval ap;
 
@@ -320,36 +326,36 @@ int main(int ac, char **av)
         }
 
         std::cout << "\n";
-        std::cout << "######## (NOT Sorted Chain)  ##########" << std::endl;
+        std::cout << "\033[1;31m######## (NOT Sorted Chain)  ##########\033[0m" << std::endl;
         std::cout << "\n";
         for (size_t i = 0; i < nbrs.size(); i++)
             std::cout << nbrs[i] << " ";
         std::cout << std::endl;
         size_t size = 2;
         std::cout << "\n";
-        std::cout << "########  (Sorted Chain)  ##########\n";
+        std::cout << "\033[1;31m########  (Sorted Chain)  ##########\n\033[0m";
         std::cout << "\n";
         
         gettimeofday(&tp, NULL);
-        long int ms_tp = tp.tv_sec * 1000 + tp.tv_usec / 1000;
+        long int ms_tp = tp.tv_sec * 1000000  + tp.tv_usec;
         merge_nd_sort_algo(nbrs, size);
         gettimeofday(&ap, NULL);
-        long int ms_ap = ap.tv_sec * 1000 + ap.tv_usec / 1000;
+        long int ms_ap = ap.tv_sec * 1000000 + ap.tv_usec;
         float time_diff = (ms_ap - ms_tp);
 
         // deq algo
         gettimeofday(&tp, NULL);
-        long int ms_tp_dq = tp.tv_sec * 1000 + tp.tv_usec / 1000;
+        long int ms_tp_dq = tp.tv_sec * 1000000  + tp.tv_usec;
         merge_nd_sort_algo_deq(nbrsdeq, size, 0);
         gettimeofday(&ap, NULL);
-        long int ms_ap_dq = ap.tv_sec * 1000 + ap.tv_usec / 1000;
+        long int ms_ap_dq = ap.tv_sec * 1000000  + ap.tv_usec;
         float time_diff_dq = (ms_ap_dq - ms_tp_dq);
         ft_print(nbrs);
-        std::cout << "\n###### TIME TO SORT#######\n\n";
-        std::cout << "Time to process a range of " << nbrs.size() << " elements with std::vector : " << time_diff << " ms" << std::endl;
-        std::cout << "Time to process a range of " << nbrs.size() << " elements with std::vector : " << time_diff_dq << " ms" << std::endl;
+        std::cout << "\033[1;31m\n###### TIME TO SORT#######\n\n\033[0m";
+        std::cout << "Time to process a range of " << nbrs.size() << " elements with std::vector : \033[1;45m" << time_diff <<  "\033[0m" <<" us" << std::endl;
+        std::cout << "Time to process a range of " << nbrs.size() << " elements with std::deque : \033[1;46m" << time_diff_dq <<  "\033[0m" <<" us" << std::endl;
         std::cout << "\n\n";
-        std::cout << "Number of comparisons: " << nbrCmp << std::endl;
+        std::cout << "Number of comparisons: \033[1;42m" << nbrCmp  << "\033[0m" << std::endl;
         std::cout << "\n";
     }
     return (0);

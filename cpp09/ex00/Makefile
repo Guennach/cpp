@@ -6,7 +6,7 @@
 #    By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/02 12:47:45 by gothmane          #+#    #+#              #
-#    Updated: 2023/12/02 13:52:42 by gothmane         ###   ########.fr        #
+#    Updated: 2023/12/22 09:58:39 by gothmane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ OBJS_TPP = $(SRCS:.tpp=.o)
 
 CC = c++
 
-CFLAGS = -Wall -Wextra -Werror -std=c++11
+CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 NAME = btc
 

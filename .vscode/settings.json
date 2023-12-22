@@ -78,6 +78,7 @@
         "*.tpp": "cpp",
         "map": "cpp",
         "__tree": "cpp",
-        "list": "cpp"
+        "list": "cpp",
+        "__cxx_version": "cpp"
     }
 }

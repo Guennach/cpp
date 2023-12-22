@@ -6,7 +6,7 @@
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 15:29:18 by gothmane          #+#    #+#             */
-/*   Updated: 2023/11/27 14:05:48 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/12/21 13:05:07 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ class Span
 {
     private:
         unsigned int      N;
-        std::vector<int> vr;
+        unsigned int      counter;
     public:
+        std::vector<int> vr;
         Span();
         Span(unsigned int n);
         Span(const Span &s);
@@ -29,4 +30,5 @@ class Span
         void addNumber(int nbr);
         int shortestSpan();
         int longestSpan();
+        void addSeqNbr(std::vector<int>::iterator begin, std::vector<int>::iterator end);
 };

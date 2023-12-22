@@ -6,7 +6,7 @@
 #    By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/26 14:05:38 by gothmane          #+#    #+#              #
-#    Updated: 2023/11/26 14:06:14 by gothmane         ###   ########.fr        #
+#    Updated: 2023/12/21 12:29:24 by gothmane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CC = c++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-NAME = Bro
+NAME = find
 
 all : $(NAME)
 
