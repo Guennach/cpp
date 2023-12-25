@@ -6,11 +6,11 @@
 #    By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/02 12:47:45 by gothmane          #+#    #+#              #
-#    Updated: 2023/12/18 17:31:40 by gothmane         ###   ########.fr        #
+#    Updated: 2023/12/25 14:36:05 by gothmane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS =  main.cpp 
+SRCS =  main.cpp PmergeMe.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
@@ -24,7 +24,7 @@ NAME = JPL
 all : $(NAME)
 
 
-%.o : %.cpp 
+%.o : %.cpp  
 	$(CC) $(CFLAGS) -o $@ -c $<
 	
 	

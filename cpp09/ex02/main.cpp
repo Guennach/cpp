@@ -157,14 +157,11 @@ void merge_nd_sort_algo(std::vector<int> &nbrs, int size_pair)
     rev_recur(nbrs, size_pair / 2, rest);
 }
 
-
-// DEQUE CODE PART 
+// DEQUE CODE PART
 
 #include <deque>
 
 int nbrCmpDeq = 0;
-
-
 
 void ft_print_deque(std::deque<int> vr)
 {
@@ -172,8 +169,6 @@ void ft_print_deque(std::deque<int> vr)
         std::cout << vr[i] << " ";
     std::cout << std::endl;
 }
-
-
 
 bool cmp_deq(std::deque<int> s1, std::deque<int> s2)
 {
@@ -195,7 +190,7 @@ void rev_recur_deq(std::deque<int> &nbrs, int size_pair, std::deque<int> &rest_v
         i += (size_pair / 2);
         vicis.push_back(tmp);
     }
-    //create main chain and pend
+    // create main chain and pend
     for (size_t i = 0; i < vicis.size(); i++)
     {
         if (i % 2 != 0)
@@ -206,10 +201,10 @@ void rev_recur_deq(std::deque<int> &nbrs, int size_pair, std::deque<int> &rest_v
     if (rest_vc.size())
         mPend.push_back(rest_vc);
 
-    //Insert first element from pend to main chain
+    // Insert first element from pend to main chain
     mChain.insert(mChain.begin(), mPend.front());
 
-    //JaocbSthall algo
+    // JaocbSthall algo
     unsigned int seq[] = {1, 3, 5, 11, 21, 43, 85, 171, 341, 683, 1365, 2731, 5461, 10923, 21845, 43691, 87381, 174763, 349525};
     size_t one = 1;
     size_t two = 0;
@@ -299,25 +294,25 @@ void merge_nd_sort_algo_deq(std::deque<int> &nbrs, int size_pair, int size)
 
 // END DEQUE
 
-
 int main(int ac, char **av)
 {
     if (ac > 1)
-    {   
-    std::cout << "\033[1;35m" << "  __        __   _  \n"
-                 "  \\ \\      / /__| | ___ ___  _ __ ___   ___ \n"
-                 "   \\ \\ /\\ / / _ \\ |/ __/ _ \\| '_ ` _ \\ / _ \\\n"
-                 "    \\ V  V /  __/ | (_| (_) | | | | | |  __/ \n"
-                 "     \\_/\\_/ \\___|_|\\___\\___/|_| |_| |_|\\___| \n" << "\033[0m";
+    {
+        std::cout << "\033[1;35m"
+                  << "  __        __   _  \n"
+                     "  \\ \\      / /__| | ___ ___  _ __ ___   ___ \n"
+                     "   \\ \\ /\\ / / _ \\ |/ __/ _ \\| '_ ` _ \\ / _ \\\n"
+                     "    \\ V  V /  __/ | (_| (_) | | | | | |  __/ \n"
+                     "     \\_/\\_/ \\___|_|\\___\\___/|_| |_| |_|\\___| \n"
+                  << "\033[0m";
 
+        size_t size = 2;    // size to of pair (n*2)
+        int i = 1;
         struct timeval tp;
         struct timeval ap;
 
-
-        std::vector<int> nbrs;
-        std::deque<int> nbrsdeq;
-
-        int i = 1;
+        std::vector<int> nbrs; // vector list
+        std::deque<int> nbrsdeq; // deque list
 
         for (; i < ac; i++)
         {
@@ -331,31 +326,56 @@ int main(int ac, char **av)
         for (size_t i = 0; i < nbrs.size(); i++)
             std::cout << nbrs[i] << " ";
         std::cout << std::endl;
-        size_t size = 2;
+
+
+
+        //Start time of sort
+        gettimeofday(&tp, NULL);
+        clock_t start_l1 = clock();
+
+        //Perform logic of sorting for vector container
+        merge_nd_sort_algo(nbrs, size);
+
+        //End time of sort
+        gettimeofday(&ap, NULL);
+        clock_t end_l1 = clock();
+
+        //calculation and convertion to microseconds
+        double duration_l1 = (end_l1 - start_l1) * 1.0 / CLOCKS_PER_SEC;
+
+
+        // deq algo
+
+        //Start time of sort
+        gettimeofday(&tp, NULL);
+        clock_t start_l2 = clock();
+
+        //Perform logic of sorting for deque container
+        merge_nd_sort_algo_deq(nbrsdeq, size, 0);
+
+        //End time of sort
+        gettimeofday(&ap, NULL);
+        clock_t end_l2 = clock();
+
+        //calculation and convertion to microseconds
+        double duration_l2 = (end_l2 - start_l2) * 1.0 / CLOCKS_PER_SEC;
+
+        //Printing the vector list
         std::cout << "\n";
         std::cout << "\033[1;31m########  (Sorted Chain)  ##########\n\033[0m";
         std::cout << "\n";
-        
-        gettimeofday(&tp, NULL);
-        long int ms_tp = tp.tv_sec * 1000000  + tp.tv_usec;
-        merge_nd_sort_algo(nbrs, size);
-        gettimeofday(&ap, NULL);
-        long int ms_ap = ap.tv_sec * 1000000 + ap.tv_usec;
-        float time_diff = (ms_ap - ms_tp);
-
-        // deq algo
-        gettimeofday(&tp, NULL);
-        long int ms_tp_dq = tp.tv_sec * 1000000  + tp.tv_usec;
-        merge_nd_sort_algo_deq(nbrsdeq, size, 0);
-        gettimeofday(&ap, NULL);
-        long int ms_ap_dq = ap.tv_sec * 1000000  + ap.tv_usec;
-        float time_diff_dq = (ms_ap_dq - ms_tp_dq);
         ft_print(nbrs);
+
+        //Printing time inofs
         std::cout << "\033[1;31m\n###### TIME TO SORT#######\n\n\033[0m";
-        std::cout << "Time to process a range of " << nbrs.size() << " elements with std::vector : \033[1;45m" << time_diff <<  "\033[0m" <<" us" << std::endl;
-        std::cout << "Time to process a range of " << nbrs.size() << " elements with std::deque : \033[1;46m" << time_diff_dq <<  "\033[0m" <<" us" << std::endl;
+        std::cout << "Time to process a range of " << nbrs.size() << " elements with std::vector : \033[1;45m" << duration_l1 << "\033[0m"
+                  << " us" << std::endl;
+        std::cout << "Time to process a range of " << nbrs.size() << " elements with std::deque : \033[1;46m" << duration_l2 << "\033[0m"
+                  << " us" << std::endl;
+
+        //Printing Number of comparisons
         std::cout << "\n\n";
-        std::cout << "Number of comparisons: \033[1;42m" << nbrCmp  << "\033[0m" << std::endl;
+        std::cout << "Number of comparisons: \033[1;42m" << nbrCmp << "\033[0m" << std::endl;
         std::cout << "\n";
     }
     return (0);
