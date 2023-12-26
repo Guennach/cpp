@@ -6,7 +6,7 @@
 #    By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/02 12:47:45 by gothmane          #+#    #+#              #
-#    Updated: 2023/12/25 14:36:05 by gothmane         ###   ########.fr        #
+#    Updated: 2023/12/26 10:10:13 by gothmane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ OBJS_TPP = $(SRCS:.tpp=.o)
 CC = c++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
-NAME = JPL
+NAME = PmergeMe
 
 all : $(NAME)
 

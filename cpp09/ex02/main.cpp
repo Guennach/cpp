@@ -244,7 +244,6 @@ std::deque<int> sort_nd_swap_deq(std::deque<int> &nbrs, int size_pair, std::dequ
     std::deque<int> left_vici;
     std::deque<int> right_vici;
     int step = (size_pair / 2);
-    int tracker = 0;
     int rest = nbrs.size() % size_pair;
     for (size_t i = 0; i < nbrs.size() - rest;)
     {
@@ -260,7 +259,6 @@ std::deque<int> sort_nd_swap_deq(std::deque<int> &nbrs, int size_pair, std::dequ
         if (left_vici.back() > right_vici.back())
             swap(right_vici, left_vici);
         vici.push_back(std::make_pair(left_vici, right_vici));
-        tracker++;
     }
 
     size_t j_a = 0;
@@ -298,14 +296,6 @@ int main(int ac, char **av)
 {
     if (ac > 1)
     {
-        std::cout << "\033[1;35m"
-                  << "  __        __   _  \n"
-                     "  \\ \\      / /__| | ___ ___  _ __ ___   ___ \n"
-                     "   \\ \\ /\\ / / _ \\ |/ __/ _ \\| '_ ` _ \\ / _ \\\n"
-                     "    \\ V  V /  __/ | (_| (_) | | | | | |  __/ \n"
-                     "     \\_/\\_/ \\___|_|\\___\\___/|_| |_| |_|\\___| \n"
-                  << "\033[0m";
-
         size_t size = 2;    // size to of pair (n*2)
         int i = 1;
         struct timeval tp;
@@ -316,18 +306,18 @@ int main(int ac, char **av)
 
         for (; i < ac; i++)
         {
+            if (std::atoi(av[i]) < 0)
+            {
+                std::cout << "Error" << std::endl;
+                exit(1);
+            }
             nbrs.push_back(std::atoi(av[i]));
             nbrsdeq.push_back(std::atoi(av[i]));
         }
 
-        std::cout << "\n";
-        std::cout << "\033[1;31m######## (NOT Sorted Chain)  ##########\033[0m" << std::endl;
-        std::cout << "\n";
+        std::cout << "\033[1;31mBefore: \033[0m";
         for (size_t i = 0; i < nbrs.size(); i++)
             std::cout << nbrs[i] << " ";
-        std::cout << std::endl;
-
-
 
         //Start time of sort
         gettimeofday(&tp, NULL);
@@ -362,21 +352,20 @@ int main(int ac, char **av)
 
         //Printing the vector list
         std::cout << "\n";
-        std::cout << "\033[1;31m########  (Sorted Chain)  ##########\n\033[0m";
-        std::cout << "\n";
+        std::cout << "\033[1;31mAfter: \033[0m";
+        // std::cout << "\n";
         ft_print(nbrs);
 
-        //Printing time inofs
-        std::cout << "\033[1;31m\n###### TIME TO SORT#######\n\n\033[0m";
+        //Printing time infos
         std::cout << "Time to process a range of " << nbrs.size() << " elements with std::vector : \033[1;45m" << duration_l1 << "\033[0m"
                   << " us" << std::endl;
         std::cout << "Time to process a range of " << nbrs.size() << " elements with std::deque : \033[1;46m" << duration_l2 << "\033[0m"
                   << " us" << std::endl;
 
         //Printing Number of comparisons
-        std::cout << "\n\n";
-        std::cout << "Number of comparisons: \033[1;42m" << nbrCmp << "\033[0m" << std::endl;
-        std::cout << "\n";
+        // std::cout << "\n\n";
+        // std::cout << "Number of comparisons: \033[1;42m" << nbrCmp << "\033[0m" << std::endl;
+        // std::cout << "\n";
     }
     return (0);
 }
