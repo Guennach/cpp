@@ -298,8 +298,6 @@ int main(int ac, char **av)
     {
         size_t size = 2;    // size to of pair (n*2)
         int i = 1;
-        struct timeval tp;
-        struct timeval ap;
 
         std::vector<int> nbrs; // vector list
         std::deque<int> nbrsdeq; // deque list
@@ -320,14 +318,12 @@ int main(int ac, char **av)
             std::cout << nbrs[i] << " ";
 
         //Start time of sort
-        gettimeofday(&tp, NULL);
         clock_t start_l1 = clock();
 
         //Perform logic of sorting for vector container
         merge_nd_sort_algo(nbrs, size);
 
         //End time of sort
-        gettimeofday(&ap, NULL);
         clock_t end_l1 = clock();
 
         //calculation and convertion to microseconds
@@ -337,14 +333,12 @@ int main(int ac, char **av)
         // deq algo
 
         //Start time of sort
-        gettimeofday(&tp, NULL);
         clock_t start_l2 = clock();
 
         //Perform logic of sorting for deque container
         merge_nd_sort_algo_deq(nbrsdeq, size, 0);
 
         //End time of sort
-        gettimeofday(&ap, NULL);
         clock_t end_l2 = clock();
 
         //calculation and convertion to microseconds
