@@ -6,7 +6,7 @@
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:19:53 by gothmane          #+#    #+#             */
-/*   Updated: 2023/12/22 13:12:49 by gothmane         ###   ########.fr       */
+/*   Updated: 2023/12/28 11:15:08 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int ft_ifnbr(char *av)
 
 int main(int ac, char **av)
 {
-    if (ac > 1)
+    if (ac == 2)
     {
         std::stack<int> st;
         std::string input = std::string(av[1]);
@@ -175,5 +175,7 @@ int main(int ac, char **av)
             tempStack.pop();
         }
     }
+    else
+        std::cout << "Error\n";
     return (0);
 }

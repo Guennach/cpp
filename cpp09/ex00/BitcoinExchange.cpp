@@ -6,7 +6,7 @@
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 12:49:16 by gothmane          #+#    #+#             */
-/*   Updated: 2023/12/22 12:21:20 by gothmane         ###   ########.fr       */
+/*   Updated: 2024/01/01 20:20:03 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,7 @@ bool ft_check_date_digits(std::string date)
     }
     if (spliter == 2 && year == 4 && month == 2 && day == 2)
     {
-        if ((std::string(ms) == "00" || std::string(ds) == "00") 
-            || (std::string(ms) == "0" || std::string(ds) == "0") )
+        if ((std::string(ms) == "00" || std::string(ds) == "00" || std::string(ys) == "0000" || std::atoi(ys) < 2008 || std::atoi(ms) > 12 || std::atoi(ds) > 31 ) )
             return (false);
         return (true);
     }
@@ -97,11 +96,11 @@ bool ft_check_date_digits(std::string date)
 
 bool isDateFormatValid(const std::string &date)
 {
-    struct tm tm;
+    // struct tm tm;
 
-    char *checker = strptime(date.c_str(), "%Y-%m-%d", &tm);
-    if (checker == NULL)
-        return (false);
+    // char *checker = strptime(date.c_str(), "%Y-%m-%d", &tm);
+    // if (checker == NULL)
+    //     return (false);
     if (ft_check_date_digits(date) == true)
         return (true);
     return (false);
@@ -162,7 +161,7 @@ size_t ft_isNumber(std::string nbr)
             point++;
             size++;
         }
-        else if ((nbr[i] >= '0' &&  nbr[i] <= '9') || (nbr[i] == ' ' || nbr[i] == '\t'))
+        else if ((nbr[i] >= '0' &&  nbr[i] <= '9'))
             size++;
     }
     if (size == nbr.size() && point <= 1)
@@ -180,7 +179,12 @@ void BitcoinExchange::ft_fillmap_input(std::string nameFile)
         std::string line;
         while (std::getline(in, line))
         {
-            if (i > 0)
+            if (i == 0 && line != "date | value")
+            {
+                std::cout << "\033[1;31mCheck ur first line first !" << "\033[0m" << "\n";
+                exit(1);
+            }
+            else if (i > 0)
             {
                 std::string date = line;
                 if (date.find('|') != MAX_VALUE)
@@ -204,7 +208,7 @@ void BitcoinExchange::ft_fillmap_input(std::string nameFile)
                         {
                             if (it->first == date)
                             {
-                                std::cout <<  "\033[1;35m" << it->first << "\033[0m" << " => " <<  line.substr((line.find("|") + 2), line.size()) << 
+                                std::cout <<  "\033[1;35m" << date << "\033[0m" << " => " <<  line.substr((line.find("|") + 2), line.size()) << 
                                    " = \033[1;32m" << std::strtod(it->second.c_str(), NULL) * std::strtod(line.substr((line.find("|") + 2), line.size()).c_str(), NULL) << "\033[0m" << std::endl;
                                 check = 1;
                             }
@@ -216,7 +220,7 @@ void BitcoinExchange::ft_fillmap_input(std::string nameFile)
                             while (it != data.end())
                             {
                                 if (it->first == findClosestLowerDate(data, date))
-                                    std::cout <<  "\033[1;34m" << it->first << "\033[0m" << " => " << line.substr((line.find("|") + 2), line.size())  << 
+                                    std::cout <<  "\033[1;34m" << date << "\033[0m" << " => " << line.substr((line.find("|") + 2), line.size())  << 
                                         " = \033[1;32m" << std::strtod(it->second.c_str(), NULL) * std::strtod(line.substr((line.find("|") + 2), line.size()).c_str(), NULL) << "\033[0m" << std::endl;
                                 ++it;
                             }
