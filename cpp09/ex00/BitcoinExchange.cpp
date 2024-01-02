@@ -6,7 +6,7 @@
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 12:49:16 by gothmane          #+#    #+#             */
-/*   Updated: 2024/01/02 12:10:35 by gothmane         ###   ########.fr       */
+/*   Updated: 2024/01/02 12:18:55 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,6 @@ std::map<int, std::pair<std::string, std::string> > BitcoinExchange::getInput()
 std::map<std::string, std::string> BitcoinExchange::getData()
 {
     return (this->data);
-}
-
-std::pair<std::string, int> BitcoinExchange::ft_split(std::string line)
-{
-    // const char *casted = line.c_str();
-    std::pair<std::string, int> mp;
-
-    std::cout << line.find(',');
-    // Return a default pair if no comma is found
-    return mp;
 }
 
 bool ft_check_date_digits(std::string date)
@@ -82,7 +72,9 @@ bool ft_check_date_digits(std::string date)
     }
     if (spliter == 2 && year == 4 && month == 2 && day == 2)
     {
-        if ((std::string(ms) == "00" || std::string(ds) == "00" || std::string(ys) == "0000" || std::atoi(ys) < 2008 || std::atoi(ms) > 12 || std::atoi(ds) > 31 ) )
+        if ((std::string(ms) == "00" || std::string(ds) == "00" 
+            || std::string(ys) == "0000" || std::atoi(ys) < 2008 
+            || std::atoi(ms) > 12 || std::atoi(ds) > 31 ) )
             return (false);
         return (true);
     }
@@ -91,11 +83,6 @@ bool ft_check_date_digits(std::string date)
 
 bool isDateFormatValid(const std::string &date)
 {
-    // struct tm tm;
-
-    // char *checker = strptime(date.c_str(), "%Y-%m-%d", &tm);
-    // if (checker == NULL)
-    //     return (false);
     if (ft_check_date_digits(date) == true)
         return (true);
     return (false);
