@@ -6,13 +6,12 @@
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:19:53 by gothmane          #+#    #+#             */
-/*   Updated: 2023/12/28 11:15:08 by gothmane         ###   ########.fr       */
+/*   Updated: 2024/01/02 12:09:22 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
-#include <sstream>
-#include <string>
+
 
 int ft_ifnbr(char *av)
 {

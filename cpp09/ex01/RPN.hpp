@@ -6,7 +6,7 @@
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:20:01 by gothmane          #+#    #+#             */
-/*   Updated: 2024/01/01 20:28:43 by gothmane         ###   ########.fr       */
+/*   Updated: 2024/01/02 12:09:35 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 #include <iostream>
 #include <stack>
+#include <sstream>
 
 class RPN
 {

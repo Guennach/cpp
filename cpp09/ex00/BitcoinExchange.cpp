@@ -6,16 +6,11 @@
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 12:49:16 by gothmane          #+#    #+#             */
-/*   Updated: 2024/01/01 20:20:03 by gothmane         ###   ########.fr       */
+/*   Updated: 2024/01/02 12:10:35 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
-#include <vector>
-#include <sstream>
-#include <ctime>
-
-
 
 BitcoinExchange::BitcoinExchange() {}
 
@@ -239,5 +234,7 @@ void BitcoinExchange::ft_fillmap_input(std::string nameFile)
             }
             i++;
         }
+        if (line == "\0" && i == 0)
+            std::cout << "Empty file !\n";
     }
 }

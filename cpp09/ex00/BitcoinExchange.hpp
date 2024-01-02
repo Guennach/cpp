@@ -6,15 +6,13 @@
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 12:49:15 by gothmane          #+#    #+#             */
-/*   Updated: 2023/12/29 14:40:59 by gothmane         ###   ########.fr       */
+/*   Updated: 2024/01/02 12:10:15 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <map>
 #include <fstream>
-
-
 
 class BitcoinExchange
 {

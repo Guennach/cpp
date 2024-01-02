@@ -1,8 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/02 12:07:02 by gothmane          #+#    #+#             */
+/*   Updated: 2024/01/02 12:09:01 by gothmane         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <iostream>
 #include <vector>
-#include <utility>
-#include <ctime>
-#include <sys/time.h>
+#include <deque>
 
 int nbrCmp = 0;
 
@@ -77,7 +87,7 @@ void rev_recur(std::vector<int> &nbrs, int size_pair, std::vector<int> &rest_vc)
         if (two > one)
             break;
         std::vector<std::vector<int> >::iterator it;
-        while (one >= two)
+        while (one >= two) 
         {
             it = std::lower_bound(mChain.begin(), mChain.begin() + (one + sum), mPend[one - 1], cmp);
             mChain.insert(it, mPend[one - 1]);
@@ -159,7 +169,6 @@ void merge_nd_sort_algo(std::vector<int> &nbrs, int size_pair)
 
 // DEQUE CODE PART
 
-#include <deque>
 
 int nbrCmpDeq = 0;
 
