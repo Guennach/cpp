@@ -6,15 +6,13 @@
 #    By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/02 12:47:45 by gothmane          #+#    #+#              #
-#    Updated: 2023/12/29 14:42:29 by gothmane         ###   ########.fr        #
+#    Updated: 2024/01/02 13:04:46 by gothmane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS =  main.cpp BitcoinExchange.cpp
 
 OBJS = $(SRCS:.cpp=.o)
-
-OBJS_TPP = $(SRCS:.tpp=.o)
 
 CC = c++
 

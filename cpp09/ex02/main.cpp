@@ -6,7 +6,7 @@
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 12:07:02 by gothmane          #+#    #+#             */
-/*   Updated: 2024/01/02 12:09:01 by gothmane         ###   ########.fr       */
+/*   Updated: 2024/01/03 14:51:03 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void rev_recur(std::vector<int> &nbrs, int size_pair, std::vector<int> &rest_vc)
     std::vector<std::vector<int> > mChain;
     std::vector<std::vector<int> > mPend;
 
+    //Loop through size of nbrs and inc with (size_pair / 2)
     for (size_t i = 0; i < nbrs.size();)
     {
         std::vector<int> tmp;
@@ -66,6 +67,8 @@ void rev_recur(std::vector<int> &nbrs, int size_pair, std::vector<int> &rest_vc)
         else if (i % 2 == 0)
             mPend.push_back(vicis[i]);
     }
+    
+    //Push the rest if it s found to Pend Chain
     if (rest_vc.size())
         mPend.push_back(rest_vc);
 
@@ -73,7 +76,8 @@ void rev_recur(std::vector<int> &nbrs, int size_pair, std::vector<int> &rest_vc)
     mChain.insert(mChain.begin(), mPend.front());
 
     // JaocbSthall algo
-    unsigned int seq[] = {1, 3, 5, 11, 21, 43, 85, 171, 341, 683, 1365, 2731, 5461, 10923, 21845, 43691, 87381, 174763, 349525};
+    unsigned int seq[] = {1, 3, 5, 11, 21, 43, 85, 171, 341, 683, 1365, 2731,
+                             5461, 10923, 21845, 43691, 87381, 174763, 349525};
     size_t one = 1;
     size_t two = 0;
     size_t sum = 0;
@@ -81,7 +85,7 @@ void rev_recur(std::vector<int> &nbrs, int size_pair, std::vector<int> &rest_vc)
     for (size_t kr = 1; kr < mPend.size(); kr++)
     {
         one = seq[counter_seq + 1];
-        two = seq[counter_seq] + 1;
+        two = seq[counter_seq] + 1; 
         if (one > mPend.size())
             one = mPend.size();
         if (two > one)
@@ -133,7 +137,7 @@ std::vector<int> sort_nd_swap(std::vector<int> &nbrs, int size_pair, std::vector
         // Swap if the back (last nbr) in the left pair > than right pair
         if (left_vici.back() > right_vici.back())
             swap(right_vici, left_vici);
-        // Make pair object and push it in the main vector
+        // Make pair object and pushe it in the main vector
         vici.push_back(std::make_pair(left_vici, right_vici));
     }
 
@@ -168,7 +172,6 @@ void merge_nd_sort_algo(std::vector<int> &nbrs, int size_pair)
 }
 
 // DEQUE CODE PART
-
 
 int nbrCmpDeq = 0;
 
@@ -300,7 +303,6 @@ void merge_nd_sort_algo_deq(std::deque<int> &nbrs, int size_pair, int size)
 }
 
 // END DEQUE
-
 int main(int ac, char **av)
 {
     if (ac > 1)
@@ -336,7 +338,7 @@ int main(int ac, char **av)
         clock_t end_l1 = clock();
 
         //calculation and convertion to microseconds
-        double duration_l1 = (end_l1 - start_l1) * 1.0 / CLOCKS_PER_SEC;
+        double duration_l1 = (double)((end_l1 - start_l1))  / CLOCKS_PER_SEC;
 
 
         // deq algo
@@ -351,7 +353,7 @@ int main(int ac, char **av)
         clock_t end_l2 = clock();
 
         //calculation and convertion to microseconds
-        double duration_l2 = (end_l2 - start_l2) * 1.0 / CLOCKS_PER_SEC;
+        double duration_l2 = (double)((end_l2 - start_l2)) / CLOCKS_PER_SEC;
 
         //Printing the vector list
         std::cout << "\n";

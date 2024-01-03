@@ -6,7 +6,7 @@
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 12:49:16 by gothmane          #+#    #+#             */
-/*   Updated: 2024/01/02 12:18:55 by gothmane         ###   ########.fr       */
+/*   Updated: 2024/01/03 13:00:37 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,7 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &be)
     return (*this);
 }
 
-std::map<int, std::pair<std::string, std::string> > BitcoinExchange::getInput()
-{
-    return (this->input);
-}
+
 
 std::map<std::string, std::string> BitcoinExchange::getData()
 {
@@ -74,7 +71,10 @@ bool ft_check_date_digits(std::string date)
     {
         if ((std::string(ms) == "00" || std::string(ds) == "00" 
             || std::string(ys) == "0000" || std::atoi(ys) < 2008 
-            || std::atoi(ms) > 12 || std::atoi(ds) > 31 ) )
+            || std::atoi(ys) > 2023 || std::atoi(ms) < 1 
+            || std::atoi(ms) > 12 || std::atoi(ds) > 31 || std::atoi(ds) < 1 ))
+            return (false);
+        else if (std::atoi(ms) == 2 && std::atoi(ds) > 29)
             return (false);
         return (true);
     }
@@ -120,9 +120,9 @@ void BitcoinExchange::ft_fillmap(std::string nameFile)
 }
 const uint64_t MAX_VALUE = 18446744073709551615ULL;
 
-std::string findClosestLowerDate(const std::map<std::string, std::string> &dates, std::string targetDate)
+std::string findClosestLowerDate(std::map<std::string, std::string> &dates, std::string targetDate)
 {
-    std::map<std::string, std::string>::const_iterator it = dates.lower_bound(targetDate);
+    std::map<std::string, std::string>::iterator it = dates.lower_bound(targetDate);
 
     if (it == dates.begin())
         return "";
@@ -133,10 +133,15 @@ size_t ft_isNumber(std::string nbr)
 {
     size_t size = 0;
     int point = 0;
+    int sign = 0;
+
     for (size_t i = 0; i < nbr.size(); i++)
     {
         if (i == 0 && (nbr[0] == '-' || nbr [0] == '+'))
+        {
             size++;
+            sign = 1;
+        }
         else if (nbr[i] == '.' && (nbr[i - 1] >= '0' &&  nbr[i - 1] <= '9') 
             && (nbr[i + 1] && nbr[i + 1] >= '0' &&  nbr[i + 1] <= '9'))
         {
@@ -146,7 +151,9 @@ size_t ft_isNumber(std::string nbr)
         else if ((nbr[i] >= '0' &&  nbr[i] <= '9'))
             size++;
     }
-    if (size == nbr.size() && point <= 1)
+    if ((size == 1 && sign == 1))
+        return (2);
+    else if ((size == nbr.size() && point <= 1))
         return (1);
     return (2);
 }
@@ -171,9 +178,18 @@ void BitcoinExchange::ft_fillmap_input(std::string nameFile)
                 std::string date = line;
                 if (date.find('|') != MAX_VALUE)
                 {
-                    date = date.substr(0, date.find("|") - 1);
+                    date = date.substr(0, date.find("| ") - 1);
+                    if (line.find("|") == line.size() - 1)
+                    {
+                        std::cout << "\033[1;31mNumber is not specified !\033[0m" << std::endl;
+                        exit(1);
+                    }
                     std::string it = line.substr((line.find("|") + 2), line.size());
-
+                    if (it == "\0")
+                    {
+                        std::cout << "\033[1;31mNumber is not specified !\033[0m" << std::endl;
+                        exit(1);
+                    }
                     if (ft_isNumber(it) == 2)
                         std::cerr << "\033[1;31mError: [" << it << "] is not a Number.\033[0m\n" ;
                     else if (!isDateFormatValid(date))
@@ -209,7 +225,6 @@ void BitcoinExchange::ft_fillmap_input(std::string nameFile)
                         }
                     }
                     std::pair<int, std::pair<std::string, std::string> > pr = std::make_pair(i, std::make_pair(date, it));
-                    input.insert(pr);
                 }
                 else
                 {
@@ -222,6 +237,7 @@ void BitcoinExchange::ft_fillmap_input(std::string nameFile)
             i++;
         }
         if (line == "\0" && i == 0)
-            std::cout << "Empty file !\n";
+            std::cerr << "\033[1;31mError that's an empty file !\033[0m\n";
+        in.close();
     }
 }

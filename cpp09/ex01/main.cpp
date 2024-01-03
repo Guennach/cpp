@@ -6,7 +6,7 @@
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:19:53 by gothmane          #+#    #+#             */
-/*   Updated: 2024/01/02 12:09:22 by gothmane         ###   ########.fr       */
+/*   Updated: 2024/01/03 15:06:10 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,15 @@ int ft_ifnbr(char *av)
 
     for (; i < std::string(av).size(); i++)
     {
-        if ((av[i] < '0' || av[i] > '9') && av[i] != '+' && av[i] != '-' && av[i] != '*' && av[i] != '/' && av[i] != '\t' && av[i] != 32)
-        {
-            if (av[i] == 13)
-                std::cout << "[" << av[1] << "]" << std::endl;
+        if ((av[i] < '0' || av[i] > '9') 
+            && av[i] != '+' && av[i] != '-' 
+            && av[i] != '*' && av[i] != '/' 
+            && av[i] != '\t' && av[i] != 32)
             return -1;
+        else if (av[i] == '+')
+        {
+            if (av[i + 1] >= '0' && av[i + 1] <= '9')
+                return -1;
         }
     }
     return (1);
@@ -45,7 +49,13 @@ int main(int ac, char **av)
             {
                 if (ft_ifnbr(av[1]) == -1)
                 {
-                    std::cout << "Error: Not a number !" << std::endl;
+                    std::cerr << "\033[1;31mError: Not a number !\033[0m" << std::endl;
+                    return (1);
+                }
+                else if ((token != "*" && token != "-" && token != "/" && token != "+") 
+                    && std::atoi(token.c_str()) >= 10)
+                {
+                    std::cerr << "\033[1;31mError: Number >= 10 !\033[0m" << std::endl;
                     return (1);
                 }
                 if (token == "*")
@@ -154,7 +164,7 @@ int main(int ac, char **av)
                         }
                         double first_op = std::strtod(tks.top().c_str(), NULL);
                         tks.pop();
-                        double result = sec_op / first_op;
+                        double result = first_op / sec_op;
                         std::string str = std::to_string(result);
                         tks.push(str);
                     }
@@ -175,6 +185,6 @@ int main(int ac, char **av)
         }
     }
     else
-        std::cout << "Error\n";
+        std::cerr << "\033[1;31m " << "Error" << "\033[0m" << std::endl;
     return (0);
 }

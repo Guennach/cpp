@@ -6,15 +6,13 @@
 #    By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/02 12:47:45 by gothmane          #+#    #+#              #
-#    Updated: 2023/12/05 16:58:17 by gothmane         ###   ########.fr        #
+#    Updated: 2024/01/03 12:10:24 by gothmane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS =  main.cpp RPN.cpp
 
 OBJS = $(SRCS:.cpp=.o)
-
-OBJS_TPP = $(SRCS:.tpp=.o)
 
 CC = c++
 
