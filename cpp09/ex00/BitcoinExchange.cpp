@@ -6,7 +6,7 @@
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 12:49:16 by gothmane          #+#    #+#             */
-/*   Updated: 2024/01/03 13:00:37 by gothmane         ###   ########.fr       */
+/*   Updated: 2024/01/03 20:10:34 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,8 @@ void BitcoinExchange::ft_fillmap(std::string nameFile)
             i++;
         }
     }
+    else
+        std::cerr << "\033[1;31mError while opening the file [" <<  nameFile << "] !\033[0m\n";
 }
 const uint64_t MAX_VALUE = 18446744073709551615ULL;
 
@@ -240,4 +242,6 @@ void BitcoinExchange::ft_fillmap_input(std::string nameFile)
             std::cerr << "\033[1;31mError that's an empty file !\033[0m\n";
         in.close();
     }
+    else
+        std::cerr << "\033[1;31mError while opening the file [" <<  nameFile << "] !\033[0m\n";
 }

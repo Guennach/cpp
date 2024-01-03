@@ -6,7 +6,7 @@
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 12:07:02 by gothmane          #+#    #+#             */
-/*   Updated: 2024/01/03 15:30:13 by gothmane         ###   ########.fr       */
+/*   Updated: 2024/01/03 20:28:21 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -248,6 +248,7 @@ void rev_recur_deq(std::deque<int> &nbrs, int size_pair, std::deque<int> &rest_v
             nbrs.push_back(mChain[i][j]);
     }
 }
+
 
 std::deque<int> sort_nd_swap_deq(std::deque<int> &nbrs, int size_pair, std::deque<int> &rest_vici)
 {
