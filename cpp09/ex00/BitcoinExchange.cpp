@@ -6,7 +6,7 @@
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 12:49:16 by gothmane          #+#    #+#             */
-/*   Updated: 2024/01/03 20:10:34 by gothmane         ###   ########.fr       */
+/*   Updated: 2024/01/03 21:37:15 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,18 +181,10 @@ void BitcoinExchange::ft_fillmap_input(std::string nameFile)
                 if (date.find('|') != MAX_VALUE)
                 {
                     date = date.substr(0, date.find("| ") - 1);
-                    if (line.find("|") == line.size() - 1)
-                    {
-                        std::cout << "\033[1;31mNumber is not specified !\033[0m" << std::endl;
-                        exit(1);
-                    }
                     std::string it = line.substr((line.find("|") + 2), line.size());
-                    if (it == "\0")
-                    {
-                        std::cout << "\033[1;31mNumber is not specified !\033[0m" << std::endl;
-                        exit(1);
-                    }
-                    if (ft_isNumber(it) == 2)
+                    if (line.find("|") == line.size() - 1 || it == "\0")
+                        std::cout << "\033[1;31mCheck your format !\033[0m" << std::endl;
+                    else if (ft_isNumber(it) == 2)
                         std::cerr << "\033[1;31mError: [" << it << "] is not a Number.\033[0m\n" ;
                     else if (!isDateFormatValid(date))
                         std::cerr << "\033[1;31mError: date format not valid.\033[0m" << std::endl;

@@ -6,7 +6,7 @@
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:19:53 by gothmane          #+#    #+#             */
-/*   Updated: 2024/01/03 20:02:28 by gothmane         ###   ########.fr       */
+/*   Updated: 2024/01/03 21:52:32 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int ft_ifnbr(char *av)
 
     for (; i < std::string(av).size(); i++)
     {
-        if (i == 0 && (av[i] == '+' 
-            || av[i] == '-' || av[i] == '*' || av[i] == '/'))
+        if (i == 0 && (av[i] == '+' || av[i] == '-' 
+            || av[i] == '*' || av[i] == '/') && (av[i + 1] < '0' || av[i + 1] > '9'))
             return (-1);
         if ((av[i] < '0' || av[i] > '9') 
             && av[i] != '+' && av[i] != '-' 
@@ -45,6 +45,7 @@ int main(int ac, char **av)
         std::istringstream iss(input);
         std::stack<std::string> tks;
         std::string token;
+        char *point = NULL;
 
         while (std::getline(iss, token, ' '))
         {
@@ -72,7 +73,7 @@ int main(int ac, char **av)
                                       << "\033[0m" << std::endl;
                             exit(1);
                         }
-                        double sec_op = std::strtod(tks.top().c_str(), NULL);
+                        double sec_op = std::strtod(tks.top().c_str(), &point);
                         tks.pop();
                         if (tks.empty())
                         {
@@ -81,7 +82,12 @@ int main(int ac, char **av)
                                       << "\033[0m" << std::endl;
                             exit(1);
                         }
-                        double first_op = std::strtod(tks.top().c_str(), NULL);
+                        double first_op = std::strtod(tks.top().c_str(), &point);
+                        if (std::string(point) != "")
+                        {
+                            std::cerr << "Error\n" ;
+                            exit(1);
+                        }
                         tks.pop();
                         double result = sec_op * first_op;
                         std::string str = std::to_string(result);
