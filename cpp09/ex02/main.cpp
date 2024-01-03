@@ -6,7 +6,7 @@
 /*   By: gothmane <gothmane@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 12:07:02 by gothmane          #+#    #+#             */
-/*   Updated: 2024/01/03 14:51:03 by gothmane         ###   ########.fr       */
+/*   Updated: 2024/01/03 15:30:13 by gothmane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -302,6 +302,35 @@ void merge_nd_sort_algo_deq(std::deque<int> &nbrs, int size_pair, int size)
     rev_recur_deq(nbrs, size_pair / 2, rest);
 }
 
+size_t ft_isNumber(std::string nbr)
+{
+    size_t size = 0;
+    int point = 0;
+    int sign = 0;
+
+    for (size_t i = 0; i < nbr.size(); i++)
+    {
+        if (i == 0 && (nbr[0] == '-' || nbr [0] == '+'))
+        {
+            size++;
+            sign = 1;
+        }
+        else if (nbr[i] == '.' && (nbr[i - 1] >= '0' &&  nbr[i - 1] <= '9') 
+            && (nbr[i + 1] && nbr[i + 1] >= '0' &&  nbr[i + 1] <= '9'))
+        {
+            point++;
+            size++;
+        }
+        else if ((nbr[i] >= '0' &&  nbr[i] <= '9'))
+            size++;
+    }
+    if ((size == 1 && sign == 1))
+        return (2);
+    else if ((size == nbr.size() && point <= 1))
+        return (1);
+    return (2);
+}
+
 // END DEQUE
 int main(int ac, char **av)
 {
@@ -315,7 +344,7 @@ int main(int ac, char **av)
 
         for (; i < ac; i++)
         {
-            if (std::atoi(av[i]) < 0)
+            if (ft_isNumber(std::string(av[i])) != 1 || std::atoi(av[i]) < 0)
             {
                 std::cout << "Error" << std::endl;
                 exit(1);
@@ -338,7 +367,7 @@ int main(int ac, char **av)
         clock_t end_l1 = clock();
 
         //calculation and convertion to microseconds
-        double duration_l1 = (double)((end_l1 - start_l1))  / CLOCKS_PER_SEC;
+        double duration_l1 = (double)((end_l1 - start_l1)) * 100  / CLOCKS_PER_SEC;
 
 
         // deq algo
@@ -353,7 +382,7 @@ int main(int ac, char **av)
         clock_t end_l2 = clock();
 
         //calculation and convertion to microseconds
-        double duration_l2 = (double)((end_l2 - start_l2)) / CLOCKS_PER_SEC;
+        double duration_l2 = (double)((end_l2 - start_l2)) * 100 / CLOCKS_PER_SEC;
 
         //Printing the vector list
         std::cout << "\n";
